@@ -1,11 +1,11 @@
-<?php  
+<?php
 	error_reporting(0);
 	session_start();
 	require_once 'functions/koneksi.php';
 
 	/*cek session*/
 	if (empty($_SESSION['session_login_pegawai_cvmekarsari'])) {
-		
+
 		if ($_GET['menu']=='lupa-katasandi') {
 			include_once 'functions/lupa-katasandi.php';
 			include_once 'pages/lupa-katasandi/_header.php';
@@ -17,10 +17,10 @@
 			include_once 'pages/login/login.php';
 			include_once 'pages/login/_footer.php';
 		}
-	}else{	
-		
-		$session_jabatan = $_SESSION['session_jabatan']; 
-			
+	}else{
+
+		$session_jabatan = $_SESSION['session_jabatan'];
+
 		switch ($session_jabatan) {
 
 			case 'kepala administrasi':
@@ -43,7 +43,7 @@
 				include_once 'kepala-gudang-dan-pengadaan/interfaces/_header.php';
 				include_once 'kepala-gudang-dan-pengadaan/route.php';
 				include_once 'kepala-gudang-dan-pengadaan/interfaces/_footer.php';
-				break;	
+				break;
 
 			case 'kepala pemasaran':
 				include_once 'functions/pelanggan.php';
@@ -58,12 +58,6 @@
 				include_once 'kepala-produksi/interfaces/_header.php';
 				include_once 'kepala-produksi/route.php';
 				include_once 'kepala-produksi/interfaces/_footer.php';
-				break;
-
-			case 'manager':
-				include_once 'manager/interfaces/_header.php';
-				include_once 'manager/route.php';
-				include_once 'manager/interfaces/_footer.php';
 				break;
 
 			case 'staff gudang':
@@ -97,5 +91,5 @@
 				break;
 		}
 	}
-	
+
 ?>

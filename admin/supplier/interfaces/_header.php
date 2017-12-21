@@ -70,15 +70,15 @@
     }
     ?>
   </head>
-  <body class="hold-transition skin-green sidebar-mini">
+  <body class="hold-transition skin-red-light sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
         <a href="" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini">CMS</span>
+          <span class="logo-mini">MT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">CV.MEKAR SARI</span>
+          <span class="logo-lg">CV.Mutiara Timur</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -130,7 +130,7 @@
                   <li class="footer"><a href="#">View all</a></li>
                 </ul>
               </li>
-              
+
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -144,7 +144,7 @@
                     <img src="assets/images/katapanda.png" class="img-circle" alt="User Image">
                     <p>
                       <?= ucwords($_SESSION['session_nama_lengkap']) ?> - <?= ucwords($_SESSION['session_jabatan']) ?>
-                      <small>CV.Mekar Sari</small>
+                      <small>CV.Mutiara Timur</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -154,7 +154,7 @@
                         <a href="?menu=profil" class="btn btn-default btn-flat btn-sm"><i class="fa fa-user text-success"></i> Profil</a>
                       </div>
                       <div class="col-xs-4 text-center">
-                        
+
                       </div>
                       <div class="col-xs-4 text-center">
                         <a href="functions/logout_supplier.php" class="btn btn-default btn-flat btn-sm"><i class="fa fa-sign-out text-danger"></i> Keluar</a>

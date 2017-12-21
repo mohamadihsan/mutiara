@@ -5,6 +5,7 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <center>
+        <h3>Login</h3>
         <img src="assets/images/logo.png" alt="" class="img-responsive">
     </center>
 
@@ -27,7 +28,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-block btn-flat" style="background-color: #00a207;color: #ffffff;" name="login">Masuk</button>
+          <button type="submit" class="btn btn-block btn-flat btn-danger" name="login">Masuk</button>
         </div>
         <!-- /.col -->
       </div>
@@ -38,7 +39,7 @@
   </div>
   <!-- /.login-box-body -->
 </div>
-<!-- /.login-box -->    
+<!-- /.login-box -->
 
 <!-- Pesan Proses Login Gagal  -->
 <?php if (isset($_SESSION['error_login'])) {

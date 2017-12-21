@@ -1,4 +1,4 @@
-<?php  
+<?php
 /*start session*/
 session_start();
 
@@ -14,7 +14,7 @@ include_once 'admin/functions/login_supplier.php';
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CV.Mekar Sari</title>
+    <title>CV.Mutiara Timur</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -39,11 +39,12 @@ include_once 'admin/functions/login_supplier.php';
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body style="background-color: #111111">
-    <div style="background-image: url('assets/img/paris.jpg')" class="main"> 
+    <div style="background-image: url('assets/img/paris.jpg')" class="main">
       <div class="overlay"></div>
       <div class="container">
-        <p class="social"><a href="#" title="" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" title="" class="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="instagram"><i class="fa fa-instagram"></i></a></p>
-        <h1 class="cursive">CV.Mekar Sari</h1>
+        <!-- <p class="social"><a href="#" title="" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" title="" class="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="instagram"><i class="fa fa-instagram"></i></a></p> -->
+        <!-- <h1 class="cursive">CV.Mutiara Timur</h1> -->
+        <h1 class="cursive">CV.Mutiara Timur</h1>
         <!-- <h2 class="sub">Kami menjual Produk Kecap dan Sauce</h2> -->
         <div class="mailing-list">
           <!-- <h3 class="mailing-list-heading">Silahkan Login untuk memesan produk!</h3> -->
@@ -57,7 +58,7 @@ include_once 'admin/functions/login_supplier.php';
                 <label for="kata_sandi" class="sr-only"></label>
                 <input type="password" name="kata_sandi" placeholder="Kata Sandi" id="kata_sandi" class="form-control transparent" required="">
               </div>
-              <button type="submit" name="login" class="btn btn-success">Login Supplier</button>
+              <button type="submit" name="login" class="btn btn-primary">Login Supplier</button>
               <!-- <button class="btn btn-danger">Daftar </button> -->
             </form>
           </div>
@@ -67,7 +68,7 @@ include_once 'admin/functions/login_supplier.php';
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <p>&copy;2017 CV.Mekar Sari</p>
+              <p>&copy;2017 CV.Mutiara Timur</p>
             </div>
             <div class="col-md-6">
               <p class="credit">Code by <a href="https://www.bootstrapious.com">Bootstrapious</a><br />& <a href="https://remoteplease.com">RemotePlease</a></p>
@@ -118,7 +119,7 @@ include_once 'admin/functions/login_supplier.php';
     <script src="assets/js/jquery.cookie.js"></script>
     <script src="assets/js/front.js"></script>
     <!-- gritter notification -->
-    <script src="admin/assets/vendors/gritter/jquery.gritter.min.js"></script> 
+    <script src="admin/assets/vendors/gritter/jquery.gritter.min.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

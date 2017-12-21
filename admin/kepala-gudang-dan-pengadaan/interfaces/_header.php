@@ -70,15 +70,15 @@
     }
     ?>
   </head>
-  <body class="hold-transition skin-green sidebar-mini">
+  <body class="hold-transition skin-red-light sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
         <a href="" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini">CMS</span>
+          <span class="logo-mini">MT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">CV.MEKAR SARI</span>
+          <span class="logo-lg">CV.Mutiara Timur</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -130,7 +130,7 @@
                   <li class="footer"><a href="#">View all</a></li>
                 </ul>
               </li>
-              
+
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -144,7 +144,7 @@
                     <img src="assets/images/user.png" class="img-circle" alt="User Image">
                     <p>
                       <?= ucwords($_SESSION['session_nama_lengkap']) ?> - <?= ucwords($_SESSION['session_jabatan']) ?>
-                      <small>CV.Mekar Sari</small>
+                      <small>CV.Mutiara Timur</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -154,7 +154,7 @@
                         <a href="?menu=profil" class="btn btn-default btn-flat btn-sm"><i class="fa fa-user text-success"></i> Profil</a>
                       </div>
                       <div class="col-xs-4 text-center">
-                        
+
                       </div>
                       <div class="col-xs-4 text-center">
                         <a href="functions/logout.php" class="btn btn-default btn-flat btn-sm"><i class="fa fa-sign-out text-danger"></i> Keluar</a>
@@ -232,11 +232,11 @@
                 <i class="fa fa-shopping-cart text-green"></i> <span>Pembelian Bahan Baku</span>
               </a>
             </li>
-            <li class="<?php if($_GET['menu']=='retur-bahan-baku') echo 'active'; ?>">
+            <!-- <li class="<?php if($_GET['menu']=='retur-bahan-baku') echo 'active'; ?>">
               <a href="?menu=retur-bahan-baku">
                 <i class="fa fa-mail-reply text-red"></i> <span>Retur Bahan Baku</span>
               </a>
-            </li>
+            </li> -->
 
             <li class="<?php if($_GET['menu']=='supplier' OR $_GET['menu']=='detail-supplier') echo 'active'; ?>">
               <a href="?menu=supplier">
@@ -244,7 +244,7 @@
               </a>
             </li>
 
-            <li class="header">LAPORAN</li>
+            <!-- <li class="header">LAPORAN</li>
 
             <li class="<?php if($_GET['menu']=='laporan-bahan-baku' OR $_GET['menu']=='laporan-persediaan-bahan-baku' OR $_GET['menu']=='laporan-pemesanan-bahan-baku' OR $_GET['menu']=='laporan-kebutuhan-bahan-baku' OR $_GET['menu']=='laporan-supplier') echo 'active'; ?> treeview">
               <a href="#">
@@ -284,7 +284,7 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </section>
         <!-- /.sidebar -->

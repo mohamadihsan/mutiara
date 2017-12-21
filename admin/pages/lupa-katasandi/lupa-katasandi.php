@@ -24,7 +24,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-block btn-flat" style="background-color: #00a207;color: #ffffff;" name="reset">Reset</button>
+          <button type="submit" class="btn btn-block btn-flat btn-danger" name="reset">Reset</button>
         </div>
         <!-- /.col -->
       </div>
@@ -35,7 +35,7 @@
   </div>
   <!-- /.login-box-body -->
 </div>
-<!-- /.login-box -->    
+<!-- /.login-box -->
 
 <!-- Pesan Proses Login Gagal  -->
 <?php if (isset($_SESSION['error_login'])) {

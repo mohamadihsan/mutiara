@@ -2,7 +2,7 @@
   <div class="pull-right hidden-xs">
     <!-- <b>Version</b> 2.3.8 -->
   </div>
-  <strong>Design by <a href="http://almsaeedstudio.com">Almsaeed Studio</a>. CV.MEKAR SARI</strong> 
+  <strong>Design by <a href="http://almsaeedstudio.com">Almsaeed Studio</a>. CV.Mutiara Timur</strong> 
 </footer>
 
 </div>
@@ -18,7 +18,7 @@ $.widget.bridge('uibutton', $.ui.button);
 <!-- Select2 -->
 <script src="assets/plugins/select2/select2.full.min.js"></script>
 <!-- gritter notification -->
-<script src="assets/vendors/gritter/jquery.gritter.min.js"></script> 
+<script src="assets/vendors/gritter/jquery.gritter.min.js"></script>
 <!-- DataTables -->
 <!-- <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/plugins/datatables/dataTables.bootstrap.min.js"></script> -->

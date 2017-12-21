@@ -1,6 +1,6 @@
-<?php  
-	
-	$menu = (isset($_GET['menu'])) ? $_GET['menu'] : '';	
+<?php
+
+	$menu = (isset($_GET['menu'])) ? $_GET['menu'] : '';
 
 	switch ($menu) {
 
@@ -14,7 +14,11 @@
 
 		case 'pembelian-bahan-baku':
 			include_once 'interfaces/pembelian-bahan-baku.php';
-			break;						
+			break;
+
+		case 'profil':
+			include_once 'pages/profil/profil.php';
+			break;
 
 		default:
 			include_once 'interfaces/beranda.php';

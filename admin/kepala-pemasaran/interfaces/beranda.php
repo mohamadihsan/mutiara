@@ -1,11 +1,11 @@
-<?php  
+<?php
 
 /*inisialisais*/
 $hari_ini = date('Y-m-d');
 
 /*jumlah pemesanan produk hari ini*/
 $sql = "
-SELECT COUNT(*) as jumlah_pemesanan_hari_ini 
+SELECT COUNT(*) as jumlah_pemesanan_hari_ini
 FROM pemesanan_produk
 WHERE DATE_FORMAT(tanggal, '%Y-%m-%d')='$hari_ini'
 ";
@@ -14,19 +14,9 @@ $row=mysqli_fetch_assoc($result);
 $jumlah_pemesanan_hari_ini = $row['jumlah_pemesanan_hari_ini'];
 
 
-/*jumlah retur produk hari ini*/
-$sql = "
-SELECT COUNT(*) as jumlah_retur_barang_hari_ini 
-FROM retur_penjualan
-WHERE DATE_FORMAT(tanggal, '%Y-%m-%d')='$hari_ini'
-";
-$result = mysqli_query($conn,$sql);
-$row=mysqli_fetch_assoc($result);
-$jumlah_retur_barang_hari_ini = $row['jumlah_retur_barang_hari_ini'];
-
 /*jumlah seluruh pelanggan*/
 $sql = "
-SELECT COUNT(*) as jumlah_seluruh_pelanggan 
+SELECT COUNT(*) as jumlah_seluruh_pelanggan
 FROM pelanggan
 ";
 $result = mysqli_query($conn,$sql);
@@ -35,7 +25,7 @@ $jumlah_seluruh_pelanggan = $row['jumlah_seluruh_pelanggan'];
 
 /*jumlah jadwal Pengiriman hari ini*/
 $sql = "
-SELECT COUNT(*) as jumlah_jadwal_pengiriman_barang_hari_ini 
+SELECT COUNT(*) as jumlah_jadwal_pengiriman_barang_hari_ini
 FROM distribusi
 WHERE DATE_FORMAT(tanggal, '%Y-%m-%d')='$hari_ini'
 ";
@@ -93,27 +83,7 @@ $jumlah_jadwal_pengiriman_barang_hari_ini = $row['jumlah_jadwal_pengiriman_baran
 		          	<!-- /.info-box -->
 		        </div>
 		        <!-- /.col -->
-		        <div class="col-md-3 col-sm-6 col-xs-12">
-		          	<div class="info-box bg-red">
-		            	<span class="info-box-icon"><i class="fa fa-mail-reply fa-2x"></i></span>
-
-		            	<div class="info-box-content">
-		              		<span class="info-box-text">Retur Barang</span>
-		              		<span class="info-box-number"><?= $jumlah_retur_barang_hari_ini ?></span>
-
-		              		<div class="progress">
-		                		<div class="progress-bar" style="width: 70%"></div>
-		              		</div>
-		                  	<span class="progress-description">
-		                    	retur (hari ini)
-		                  	</span>
-		            	</div>
-		            	<!-- /.info-box-content -->
-		          	</div>
-		          	<!-- /.info-box -->
-		        </div>
-		        <!-- /.col -->
-			
+		        
 		        <div class="col-md-3 col-sm-6 col-xs-12">
 		          	<div class="info-box bg-blue">
 		            	<span class="info-box-icon"><i class="fa fa-truck fa-2x"></i></span>
@@ -147,7 +117,7 @@ $jumlah_jadwal_pengiriman_barang_hari_ini = $row['jumlah_jadwal_pengiriman_baran
 		            	</div>
 		            	<!-- /.box-header -->
 		            	<div class="box-body">
-		              		<?php  
+		              		<?php
 		              		if ($jumlah_produk_kosong>0) {
 		              			echo "<font class='text-warning'> Ada ".$jumlah_produk_kosong.' jenis barang/produk yang stock out </font>';
 		              			?>
@@ -163,7 +133,7 @@ $jumlah_jadwal_pengiriman_barang_hari_ini = $row['jumlah_jadwal_pengiriman_baran
 		          	<!-- /.box -->
 		        </div>
 		    </div>
-		</div>	
-	</div>  
+		</div>
+	</div>
 </div>
 <!-- /.content-wrapper -->
