@@ -85,7 +85,7 @@
 									    }
 									}
 					                ?>
-				                
+
 				                </tbody>
 			              	</table>
 		              	</div>
@@ -99,7 +99,7 @@
       	</div>
       	<!-- /.row -->
     </section>
-    <!-- /.content -->  
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -127,9 +127,8 @@
 	                  	<div class="col-sm-9">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="jenis_kemasan" id="jenis_kemasan" required="">	
-				                	<option value="botol 600 ml">Botol 600 ml</option>
-				                	<option value="plastik 275 ml">Plastik 275 ml</option>
+				                <select class="form-control select" style="width: 100%;" name="jenis_kemasan" id="jenis_kemasan" required="">
+				                	<option value="dus 250 gram">Dus 250 gram</option>
 				                </select>
 				            </div>
 			            </div>
@@ -139,7 +138,7 @@
 	                  	<div class="col-sm-9">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-check"></i></span>
-				                <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Misal : kilogram" required="">
+				                <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Misal : buah" required="">
 			            	</div>
 			            </div>
 	                </div>
@@ -200,9 +199,8 @@
 	                  	<div class="col-sm-9">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="u_jenis_kemasan" id="u_jenis_kemasan" required="">	
-				                	<option value="botol 600 ml">Botol 600 ml</option>
-				                	<option value="plastik 275 ml">Plastik 275 ml</option>
+				                <select class="form-control select" style="width: 100%;" name="u_jenis_kemasan" id="u_jenis_kemasan" required="">
+                                    <option value="dus 250 gram">Dus 250 gram</option>
 				                </select>
 				            </div>
 			            </div>
@@ -245,7 +243,7 @@
 	        </div>
 	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	        	
+
 	        		<!-- ID  -->
 	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
 
@@ -262,7 +260,7 @@
 
 
 <script type="text/javascript">
-	
+
 	function ubah(id, kode, nama, jenis_kemasan, harga, satuan){
 		$('.modal-body input[name=id]').val(id);
 		$('.modal-body input[name=u_kode]').val(kode);
@@ -280,7 +278,7 @@
 
 
 <!-- Pesan Proses Simpan  -->
-<?php  
+<?php
 if (isset($_SESSION['simpan_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -327,7 +325,7 @@ if (isset($_SESSION['simpan_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Ubah  -->
-<?php  
+<?php
 if (isset($_SESSION['ubah_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -374,7 +372,7 @@ if (isset($_SESSION['ubah_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Hapus  -->
-<?php  
+<?php
 if (isset($_SESSION['hapus_berhasil'])) {
 	?>
     <script type="text/javascript">
