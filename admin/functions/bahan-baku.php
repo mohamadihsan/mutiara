@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //tambah data
 if (isset($_POST['simpan_bahan_baku'])) {
@@ -8,7 +8,7 @@ if (isset($_POST['simpan_bahan_baku'])) {
 	$result = mysqli_query($conn, $sql);
 	$row 	= mysqli_fetch_assoc($result);
 
-	$id = $row['id'];
+	$id = $row['id'] + 1;
 	//kombinasi no urut
 	if ($id >= 0 AND $id < 10) {
 		if ($id == 0) {
