@@ -5,9 +5,9 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <center>
-        <h3>Login</h3>
-        <img src="assets/images/logo.png" alt="" class="img-responsive">
+        <!-- <img src="assets/images/logo.png" alt="" class="img-responsive"> -->
     </center>
+    <h3 class=" text-red"><i class="fa fa-lock"></i> Login</h3>
 
     <form action="" method="post">
       <div class="form-group has-feedback">

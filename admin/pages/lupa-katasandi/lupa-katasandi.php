@@ -5,9 +5,10 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <center>
-      <h3>Lupa Kata Sandi</h3>
-      <img src="assets/images/logo.png" alt="" class="img-responsive">
+      <!-- <img src="assets/images/logo.png" alt="" class="img-responsive"> -->
     </center>
+    <h3 class="text-red">Lupa Kata Sandi</h3>
+    <p>Masukkan email yang digunakan saat registrasi</p>
 
     <form action="" method="post">
       <div class="form-group has-feedback">
