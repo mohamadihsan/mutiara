@@ -7,7 +7,7 @@
     <center>
         <!-- <img src="assets/images/logo.png" alt="" class="img-responsive"> -->
     </center>
-    <h3 class=" text-red"><i class="fa fa-lock"></i> Login</h3>
+    <h3 style="color:#f39c12"><i class="fa fa-lock"></i> Login</h3>
 
     <form action="" method="post">
       <div class="form-group has-feedback">
@@ -28,7 +28,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-block btn-flat btn-danger" name="login">Masuk</button>
+          <button type="submit" class="btn btn-block btn-flat btn-danger" name="login" style="background-color:#f39c12">Masuk</button>
         </div>
         <!-- /.col -->
       </div>
