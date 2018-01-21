@@ -41,9 +41,9 @@
 
 					                <?php
 					                $sql = "
-					                SELECT pemesanan_produk.id, pemesanan_produk.nomor_faktur, pemesanan_produk.tanggal_pembayaran, pemesanan_produk.metode_pembayaran, pemesanan_produk.tanggal, pemesanan_produk.status_pembayaran, pelanggan.nama, pelanggan.kode,  DATE_FORMAT(tanggal, '%H:%i:%s') AS jam_pemesanan, DATE_FORMAT(tanggal_pembayaran, '%H:%i:%s') AS jam_pembayaran, pegawai.nip, pegawai.nama_panggilan 
+					                SELECT pemesanan_produk.id, pemesanan_produk.nomor_faktur, pemesanan_produk.tanggal_pembayaran, pemesanan_produk.metode_pembayaran, pemesanan_produk.tanggal, pemesanan_produk.status_pembayaran, pelanggan.nama, pelanggan.kode,  DATE_FORMAT(tanggal, '%H:%i:%s') AS jam_pemesanan, DATE_FORMAT(tanggal_pembayaran, '%H:%i:%s') AS jam_pembayaran, pegawai.nip, pegawai.nama_panggilan
 					                FROM pemesanan_produk
-					                LEFT JOIN pelanggan ON pemesanan_produk.pelanggan=pelanggan.id 
+					                LEFT JOIN pelanggan ON pemesanan_produk.pelanggan=pelanggan.id
 					                LEFT JOIN pegawai ON pemesanan_produk.pegawai=pegawai.id
 					                ORDER BY tanggal DESC";
 									$result = mysqli_query($conn, $sql);
@@ -82,7 +82,7 @@
 							                  	<td><?= strtoupper($row['nama']) ?></td>
 							                  	<td><?= Tanggal($row['tanggal']).' ('.$jam_pemesanan.')' ?></td>
 							                  	<td>
-							                  		<?php 
+							                  		<?php
 							                  		if($row['tanggal_pembayaran']==null){
 							                  			echo "-";
 						                  			}else{
@@ -91,7 +91,7 @@
 						                  		</td>
 							                  	<td class="text-center"><?= strtoupper($metode_pembayaran) ?></td>
 							                  	<td class="text-center">
-							                  		<?php  
+							                  		<?php
 							                  		if ($status_po[$j]=='belum disetujui') {
 							                  			?><span class="label label-warning">belum disetujui</span><?php
 							                  		}else{
@@ -110,7 +110,7 @@
 									    }
 									}
 					                ?>
-				                
+
 				                </tbody>
 			              	</table>
 			            </div>
@@ -118,13 +118,13 @@
 		            </div>
 		            <!-- /.tab-content -->
 		        </div>
-		        <!-- nav-tabs-custom -->  	
+		        <!-- nav-tabs-custom -->
        		</div>
         	<!-- /.col -->
       	</div>
       	<!-- /.row -->
     </section>
-    <!-- /.content -->  
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -138,14 +138,14 @@
 	        </div>
 	        <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	                
+
 	                <div class="form-group">
 	                  	<div class="col-sm-8">
 	                  		<label for="inputBArang">Pelanggan</label>
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-				                <select class="form-control select2" style="width: 100%;" name="pelanggan" id="pelanggan" required="">	
-				                	<?php  
+				                <select class="form-control select2" style="width: 100%;" name="pelanggan" id="pelanggan" required="">
+				                	<?php
 				                	$sql = "SELECT id, kode, nama FROM pelanggan ORDER BY nama ASC";
 				                	$result = mysqli_query($conn, $sql);
 				                	$i=0;
@@ -157,25 +157,25 @@
 				                	?>
 				                </select>
 				            </div>
-				        </div>   
+				        </div>
 				        <div class="col-sm-4">
 				        	<label for="inputBArang">Metode Pembayaran</label>pelanggan
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-money"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="metode_pembayaran" id="metode_pembayaran" required="">	
+				                <select class="form-control select" style="width: 100%;" name="metode_pembayaran" id="metode_pembayaran" required="">
 				                	<option value="cash">Cash</option>
-				                	<option value="jatuh tempo">Jatuh Tempo</option>
+				                	<!-- <option value="jatuh tempo">Jatuh Tempo</option> -->
 				                </select>
 				            </div>
-				        </div>  
+				        </div>
 	                </div>
 	                <label for="inputBArang">Barang</label>
 	                <div class="form-group after-add-more">
 	                  	<div class="col-sm-8">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="id_barang[]" id="id_barang[]" required="">	
-				                	<?php  
+				                <select class="form-control select" style="width: 100%;" name="id_barang[]" id="id_barang[]" required="">
+				                	<?php
 				                	$sql = "SELECT id, kode, nama, jenis_kemasan, satuan FROM produk ORDER BY satuan, nama ASC";
 				                	$result = mysqli_query($conn, $sql);
 				                	$i=0;
@@ -193,17 +193,17 @@
 				                	?>
 				                </select>
 				            </div>
-				        </div>   
-				        <div class="col-sm-4">  	
+				        </div>
+				        <div class="col-sm-4">
 		                  	<div class="input-group">
-				                <input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" min="24" required="">
-				                <div class="input-group-btn"> 
+				                <input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" min="1" required="">
+				                <div class="input-group-btn">
 				                	<button class="btn btn-success add-more" type="button"><i class="fa fa-plus"></i></button>
 				            	</div>
 				            </div>
-				        </div> 
+				        </div>
 	                </div>
-	                
+
 		        </div>
 		        <div class="modal-footer">
 		          	<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -220,8 +220,8 @@
 		<div class="col-sm-8">
       		<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-                <select class="form-control select" style="width: 100%;" name="id_barang[]" id="id_barang[]" required="">	
-                	<?php  
+                <select class="form-control select" style="width: 100%;" name="id_barang[]" id="id_barang[]" required="">
+                	<?php
                 	$sql = "SELECT id, kode, nama, jenis_kemasan, satuan FROM produk";
                 	$result = mysqli_query($conn, $sql);
                 	while ($row=mysqli_fetch_assoc($result)) {
@@ -232,18 +232,18 @@
                 	?>
                 </select>
             </div>
-        </div>   
-        <div class="col-sm-4">  	
+        </div>
+        <div class="col-sm-4">
           	<div class="input-group">
-                <input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" min="24" required="">
-                <span class="input-group-addon">buah</span>
-                <div class="input-group-btn"> 
+                <input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" min="1" required="">
+                <!-- <span class="input-group-addon">buah</span> -->
+                <div class="input-group-btn">
               		<button class="btn btn-danger remove" type="button"><i class="fa fa-trash"></i></button>
             	</div>
             </div>
-        </div> 
+        </div>
   		<label for="inputJenis" class="col-sm-3"></label>
-    </div>  	
+    </div>
 </div>
 
 <!-- Modal Ubah -->
@@ -265,8 +265,8 @@
 	                  	<div class="col-sm-9">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="u_id_barang" id="u_id_barang" required="">	
-				                	<?php  
+				                <select class="form-control select" style="width: 100%;" name="u_id_barang" id="u_id_barang" required="">
+				                	<?php
 				                	$sql = "SELECT id, kode, nama, jenis_kemasan, satuan FROM produk";
 				                	$result = mysqli_query($conn, $sql);
 				                	while ($row=mysqli_fetch_assoc($result)) {
@@ -277,13 +277,13 @@
 				                	?>
 				                </select>
 				            </div>
-				        </div>   
-				        <div class="col-sm-3">  	
+				        </div>
+				        <div class="col-sm-3">
 		                  	<div class="input-group">
 				                <input type="number" name="u_jumlah" id="u_jumlah" class="form-control" placeholder="Jumlah" min="1" required="">
 				            	<span class="input-group-addon">buah</span>
 				            </div>
-				        </div> 
+				        </div>
 	                </div>
 		        </div>
 		        <div class="modal-footer">
@@ -305,7 +305,7 @@
 	        </div>
 	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	        	
+
 	        		<!-- ID  -->
 	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
 
@@ -330,7 +330,7 @@
 	        </div>
 	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	        	
+
 	        		<!-- ID  -->
 	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
 
@@ -370,7 +370,7 @@
 
 
 <script type="text/javascript">
-	
+
 	function ubah(id, id_barang, status, jumlah){
 		$('.modal-body input[name=id]').val(id);
 		$('.modal-body select[name=u_id_barang]').val(id_barang);
@@ -402,7 +402,18 @@
 		<?php
 		$id_po = $_COOKIE['cookie_id'];
 		$status_po = $_COOKIE['cookie_status_po'];
-		$sql_detail = "SELECT detail_pemesanan.id_barang,  detail_pemesanan.jumlah, detail_pemesanan.harga, barang.kode as kode_barang, barang.nama as nama_barang FROM barang, detail_pemesanan WHERE detail_pemesanan.id_barang=barang.id AND detail_pemesanan.id_pemesanan= '$id_po'";
+		$sql_detail = "SELECT
+                        	dpp.produk,
+                        	dpp.jumlah,
+                        	dpp.harga,
+                        	p.kode AS kode_barang,
+                        	p.nama AS nama_barang
+                        FROM
+                        	produk p,
+                        	detail_penjualan_produk dpp
+                        WHERE
+                        	dpp.produk = p.id
+                        AND dpp.faktur = '$id_po'";
     	$result_detail = mysqli_query($conn, $sql_detail);
     	$jumlah_barang = mysqli_num_rows($result_detail);
     	$i=0;
@@ -416,22 +427,22 @@
     	}
     	?>
 
-		var html_po = 
+		var html_po =
 		"<div class='col-md-12'>" +
 			"<table class='table table-responsive'>" +
-				"<tr>" + 
+				"<tr>" +
 					"<td class='text-bold'>Nomor PO</td>" +
 					"<td>: "+ nomor_faktur +"</td>" +
 					"<td class='text-bold'>Tgl PO</td>" +
 					"<td>: "+ tanggal +"</td>" +
 				"</tr>" +
-				"<tr>" + 
+				"<tr>" +
 					"<td class='text-bold'>Pelanggan</td>" +
 					"<td>: "+ kode + " " + nama +"</td>" +
 					"<td class='text-bold'>Tgl Pembayaran</td>" +
 					"<td>: "+ tanggal_pembayaran +"</td>" +
 				"</tr>" +
-				"<tr>" + 
+				"<tr>" +
 					"<td class='text-bold'>Pembayaran</td>" +
 					"<td>: "+ metode_pembayaran +"</td>" +
 					"<td></td>" +
@@ -441,7 +452,7 @@
 		"</div>"+
 		"<div class='col-md-12'>" +
 			"<table class='table table-responsive'>" +
-				"<tr>" + 
+				"<tr>" +
 					"<th width='5%'>No</th>" +
 					"<th>Barang</th>" +
 					"<th>Qty</th>" +
@@ -452,23 +463,23 @@
 				<?php
 				$i=0;
 				$no=1;
-				while ($i < $jumlah_barang) { 
+				while ($i < $jumlah_barang) {
 					$sub_total[$i] = $jumlah[$i]*$harga[$i];
 					$grand_total = $grand_total + $sub_total[$i];
 					?>
-					"<tr>" + 
+					"<tr>" +
 						"<td><?= ''.$no++ ?></td>" +
 						"<td><?= ''.$nama_barang[$i] ?></td>" +
 						"<td><?= ''.$jumlah[$i] ?></td>" +
 						"<td><?= ''.$harga[$i] ?></td>" +
 						"<td>Rp.<?= ''.$sub_total[$i] ?></td>" +
-					"</tr>" +	
+					"</tr>" +
 					<?php
 					$i++;
 				}
 				?>
 
-				"<tr>" + 
+				"<tr>" +
 					"<td colspan='4'class='text-right text-bold'>TOTAL</td>" +
 					"<td class='text-bold'>Rp. <?= ''.$grand_total ?></td>" +
 				"</tr>" +
@@ -483,6 +494,7 @@
         	"<tr>" +
           		"<td class='text-right'>" +
           			"<button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>" +
+          			"<a href='?menu=detail-pemesanan-produk' class='btn btn-primary'>Detail</a>" +
           			<?php if ($status_po=='belum disetujui'){ ?>
           				"<button type='submit' class='btn btn-success' name='terima_po'>Terima</button>" +
           			<?php }else{ ?>
@@ -498,12 +510,12 @@
 
 	$(document).ready(function() {
 
-      	$(".add-more").click(function(){ 
+      	$(".add-more").click(function(){
           	var html = $(".copy").html();
           	$(".after-add-more").after(html);
       	});
 
-      	$("body").on("click",".remove",function(){ 
+      	$("body").on("click",".remove",function(){
           	$(this).parents(".control-group").remove();
       	});
 
@@ -517,7 +529,7 @@
 
 
 <!-- Pesan Proses Simpan  -->
-<?php  
+<?php
 if (isset($_SESSION['simpan_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -564,7 +576,7 @@ if (isset($_SESSION['simpan_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Ubah  -->
-<?php  
+<?php
 if (isset($_SESSION['ubah_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -611,7 +623,7 @@ if (isset($_SESSION['ubah_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Hapus  -->
-<?php  
+<?php
 if (isset($_SESSION['hapus_berhasil'])) {
 	?>
     <script type="text/javascript">

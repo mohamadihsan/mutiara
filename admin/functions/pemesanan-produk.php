@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //tambah data purchase order
 if (isset($_POST['simpan_pemesanan'])) {
@@ -6,10 +6,10 @@ if (isset($_POST['simpan_pemesanan'])) {
 	//inisialisasi
 	$id_barang 		= $_POST['id_barang'];
 	$jumlah 		= $_POST['jumlah'];
-	$nomor_faktur = 'F/'.date('dmy-His').'/MS';
+	$nomor_faktur = 'F/'.date('dmy-His').'/MT';
 	$metode_pembayaran = $_POST['metode_pembayaran'];
 	$pelanggan = $_POST['pelanggan'];
-	$pegawai = $_POST['pegawai'];
+	$pegawai = $_SESSION['session_id'];
 	$status_pesanan = 'B';
 	$status_pembayaran = 'B';
 
@@ -17,18 +17,19 @@ if (isset($_POST['simpan_pemesanan'])) {
 	$sql = "INSERT INTO pemesanan_produk (nomor_faktur, pelanggan, pegawai, status_pesanan, status_pembayaran, metode_pembayaran) VALUES ('$nomor_faktur', '$pelanggan', '$pegawai', '$status_pesanan', '$status_pembayaran', '$metode_pembayaran')";
 	if (mysqli_query($conn, $sql)){
 		$id_pemesanan = mysqli_insert_id($conn);
-		
+
 		/*insert detail purchase order*/
 		$i=0;
 		while ($i<count($_POST['id_barang'])) {
 
-			$sql_harga = "SELECT harga FROM barang WHERE id='$id_barang[$i]'";
+			$sql_harga = "SELECT harga, satuan FROM produk WHERE id='$id_barang[$i]'";
 			$result_harga = mysqli_query($conn, $sql_harga);
 			$row_harga = mysqli_fetch_assoc($result_harga);
 			$harga[$i] = $row_harga['harga'];
+			$satuan[$i] = $row_harga['satuan'];
 
-			$sql = "INSERT INTO detail_pemesanan (id_pemesanan, id_barang, jumlah, harga) VALUES ('$id_pemesanan', '$id_barang[$i]', '$jumlah[$i]', '$harga[$i]')";
-			
+			$sql = "INSERT INTO detail_penjualan_produk (faktur, produk, jumlah, satuan, harga) VALUES ('$id_pemesanan', '$id_barang[$i]', '$jumlah[$i]', '$satuan[$i]', '$harga[$i]')";
+
 			if (mysqli_query($conn, $sql)) {
 
 				if ($i==count($_POST['id_barang'])-1) {
@@ -36,7 +37,7 @@ if (isset($_POST['simpan_pemesanan'])) {
 				}else{
 					$_SESSION['simpan_gagal'] = true;
 				}
-			    
+
 			} else {
 			    $_SESSION['simpan_gagal'] = true;
 			}

@@ -7,7 +7,7 @@
       <h1 style="opacity: 1">
         Data Pelanggan
       </h1>
-      
+
       <ol class="breadcrumb">
         <li><a href="?menu=beranda"><i class="fa fa-home"></i> Beranda</a></li>
         <li class="active">Data Pelanggan</li>
@@ -86,7 +86,7 @@
 									    }
 									}
 					                ?>
-				                
+
 				                </tbody>
 			              	</table>
 			            </div>
@@ -100,7 +100,7 @@
       	</div>
       	<!-- /.row -->
     </section>
-    <!-- /.content -->  
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -135,7 +135,7 @@
 				                  		<span class="input-group-addon"><i class="fa fa-check"></i></span>
 						                <input type="text" name="kode" id="kode" class="form-control" placeholder="Kode Pelanggan" required="" value="<?= $kode ?>" readonly="">
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
 			        		<div class="form-group">
 			                  	<label for="inputNip" class="col-sm-4">Nama Pelanggan</label>
@@ -144,35 +144,35 @@
 				                  		<span class="input-group-addon"><i class="fa fa-check"></i></span>
 						                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Pelanggan" required="">
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
 			                <div class="form-group">
 			                  	<label for="inputNamaLengkap" class="col-sm-4">Nomor Telepon</label>
 			                  	<div class="col-sm-8">
 				                  	<div class="input-group">
 				                  		<span class="input-group-addon"><i class="fa fa-child"></i></span>
-						                <input type="text" name="no_telp" id="no_telp" class="form-control" placeholder="Nomor Telepon" required="">
+						                <input type="text" name="no_telp" id="no_telp" class="form-control" placeholder="Nomor Telepon">
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
 			                <div class="form-group">
 			                  	<label for="inputNamaPanggilan" class="col-sm-4">Email</label>
 			                  	<div class="col-sm-8">
 				                  	<div class="input-group">
 				                  		<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-						                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="">
+						                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
 			                <div class="form-group">
 			                  	<label for="inputJabatan" class="col-sm-4">Status Kota</label>
 			                  	<div class="col-sm-8">
 			                  		<div class="input-group">
 						                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
-						                <select class="form-control select" style="width: 100%;" name="kota" id="kota" required="">	
+						                <select class="form-control select" style="width: 100%;" name="kota" id="kota" required="">
 						                	<option value="dalam kota">Dalam Kota</option>
 						                	<option value="luar kota">Luar Kota</option>
-						                </select>	
+						                </select>
 						            </div>
 					            </div>
 			                </div>
@@ -183,11 +183,11 @@
 				                  		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 						               <textarea name="alamat" class="form-control" placeholder="Alamat"></textarea>
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
 			        	</fieldset>
 			        </div>
-			        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">	
+			        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 	        			<fieldset>
 	        				<legend>Data Pengguna</legend>
 			        		<div class="form-group">
@@ -195,9 +195,9 @@
 			                  	<div class="col-sm-8">
 				                  	<div class="input-group">
 				                  		<span class="input-group-addon"><i class="fa fa-key"></i></span>
-						                <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control" placeholder="Nama Pengguna" required="">
+						                <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control" placeholder="Nama Pengguna" >
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
 
 			                <div class="form-group">
@@ -205,11 +205,11 @@
 			                  	<div class="col-sm-8">
 				                  	<div class="input-group">
 				                  		<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						                <input type="password" name="kata_sandi" id="kata_sandi" class="form-control" placeholder="Kata Sandi" required="">
+						                <input type="password" name="kata_sandi" id="kata_sandi" class="form-control" placeholder="Kata Sandi" >
 						            </div>
-						        </div>   
+						        </div>
 			                </div>
-			            </fieldset>    
+			            </fieldset>
 	                </div>
 		        </div>
 		        <div class="modal-footer">
@@ -229,7 +229,7 @@
       	<div class="modal-content">
         	<div class="modal-header">
 	          	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	          	<h4 class="modal-title"><i class="fa fa-edit text-warning"></i> Ubah Data Karyawan</h4>
+	          	<h4 class="modal-title"><i class="fa fa-edit text-warning"></i> Ubah Data Pelanggan</h4>
 	        </div>
 	        <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
@@ -244,7 +244,7 @@
 		                  		<span class="input-group-addon"><i class="fa fa-check"></i></span>
 				                <input type="text" name="u_kode" id="u_kode" class="form-control" placeholder="Kode Pelanggan" required="" readonly>
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	        		<div class="form-group">
 	                  	<label for="inputNip" class="col-sm-4">Nama Pelanggan</label>
@@ -253,35 +253,35 @@
 		                  		<span class="input-group-addon"><i class="fa fa-check"></i></span>
 				                <input type="text" name="u_nama" id="u_nama" class="form-control" placeholder="Nama Pelanggan" required="">
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputNamaLengkap" class="col-sm-4">Nomor Telepon</label>
 	                  	<div class="col-sm-8">
 		                  	<div class="input-group">
 		                  		<span class="input-group-addon"><i class="fa fa-child"></i></span>
-				                <input type="text" name="u_no_telp" id="u_no_telp" class="form-control" placeholder="Nomor Telepon" required="">
+				                <input type="text" name="u_no_telp" id="u_no_telp" class="form-control" placeholder="Nomor Telepon">
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputNamaPanggilan" class="col-sm-4">Email</label>
 	                  	<div class="col-sm-8">
 		                  	<div class="input-group">
 		                  		<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-				                <input type="email" name="u_email" id="u_email" class="form-control" placeholder="Email" required="">
+				                <input type="email" name="u_email" id="u_email" class="form-control" placeholder="Email" >
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputJabatan" class="col-sm-4">Status Kota</label>
 	                  	<div class="col-sm-8">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="u_kota" id="u_kota" required="">	
+				                <select class="form-control select" style="width: 100%;" name="u_kota" id="u_kota" required="">
 				                	<option value="dalam kota">Dalam Kota</option>
 				                	<option value="luar kota">Luar Kota</option>
-				                </select>	
+				                </select>
 				            </div>
 			            </div>
 	                </div>
@@ -292,7 +292,7 @@
 		                  		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 				               <textarea name="u_alamat" class="form-control" placeholder="Alamat"></textarea>
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 		        </div>
 		        <div class="modal-footer">
@@ -314,7 +314,7 @@
 	        </div>
 	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	        	
+
 	        		<!-- ID  -->
 	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
 
@@ -331,7 +331,7 @@
 
 
 <script type="text/javascript">
-	
+
 	function ubah(id, kode, nama, kota, alamat, no_telp, email, nama_pengguna){
 		$('.modal-body input[name=id]').val(id);
 		$('.modal-body input[name=u_kode]').val(kode);
@@ -350,7 +350,7 @@
 
 
 <!-- Pesan Proses Simpan  -->
-<?php  
+<?php
 if (isset($_SESSION['simpan_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -397,7 +397,7 @@ if (isset($_SESSION['simpan_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Ubah  -->
-<?php  
+<?php
 if (isset($_SESSION['ubah_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -444,7 +444,7 @@ if (isset($_SESSION['ubah_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Hapus  -->
-<?php  
+<?php
 if (isset($_SESSION['hapus_berhasil'])) {
 	?>
     <script type="text/javascript">
