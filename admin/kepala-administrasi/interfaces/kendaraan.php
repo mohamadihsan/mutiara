@@ -7,7 +7,7 @@
       <h1 style="opacity: 1">
         Data Kendaraan
       </h1>
-      
+
       <ol class="breadcrumb">
         <li><a href="?menu=beranda"><i class="fa fa-home"></i> Beranda</a></li>
         <li class="active">Data Kendaraan</li>
@@ -83,7 +83,7 @@
 									    }
 									}
 					                ?>
-				                
+
 				                </tbody>
 			              	</table>
 			            </div>
@@ -97,7 +97,7 @@
       	</div>
       	<!-- /.row -->
     </section>
-    <!-- /.content -->  
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -118,7 +118,7 @@
 		                  		<span class="input-group-addon"><i class="fa fa-check"></i></span>
 				                <input type="text" name="plat_nomor" id="plat_nomor" class="form-control" placeholder="Plat Nomor" required="">
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	        		<div class="form-group">
 	                  	<label for="inputNip" class="col-sm-4">Nama Kendaraan</label>
@@ -127,17 +127,17 @@
 		                  		<span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
 				                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Kendaraan" required="">
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputJabatan" class="col-sm-4">Tujuan Pengiriman</label>
 	                  	<div class="col-sm-8">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="tujuan_pengiriman" id="tujuan_pengiriman" required="">	
+				                <select class="form-control select" style="width: 100%;" name="tujuan_pengiriman" id="tujuan_pengiriman" required="">
 				                	<option value="dalam kota">Dalam Kota</option>
 				                	<option value="luar kota">Luar Kota</option>
-				                </select>	
+				                </select>
 				            </div>
 			            </div>
 	                </div>
@@ -147,9 +147,9 @@
 		                  	<div class="input-group">
 		                  		<span class="input-group-addon"><i class="fa fa-cubes"></i></span>
 				                <input type="number" name="kapasitas" id="kapasitas" class="form-control" placeholder="Kapasitas" required="">
-		                  		<span class="input-group-addon">buah</span>
+		                  		<span class="input-group-addon">pcs</span>
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputJabatan" class="col-sm-4">Supir</label>
@@ -166,7 +166,7 @@
 				                		<?php
 				                	}
 				                	?>
-				                </select>	
+				                </select>
 				            </div>
 			            </div>
 	                </div>
@@ -203,7 +203,7 @@
 		                  		<span class="input-group-addon"><i class="fa fa-check"></i></span>
 				                <input type="text" name="u_plat_nomor" id="u_plat_nomor" class="form-control" placeholder="Plat Nomor" required="">
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	        		<div class="form-group">
 	                  	<label for="inputNip" class="col-sm-4">Nama Kendaraan</label>
@@ -212,17 +212,17 @@
 		                  		<span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
 				                <input type="text" name="u_nama" id="u_nama" class="form-control" placeholder="Nama Kendaraan" required="">
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputJabatan" class="col-sm-4">Tujuan Pengiriman</label>
 	                  	<div class="col-sm-8">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="u_tujuan_pengiriman" id="u_tujuan_pengiriman" required="">	
+				                <select class="form-control select" style="width: 100%;" name="u_tujuan_pengiriman" id="u_tujuan_pengiriman" required="">
 				                	<option value="dalam kota">Dalam Kota</option>
 				                	<option value="luar kota">Luar Kota</option>
-				                </select>	
+				                </select>
 				            </div>
 			            </div>
 	                </div>
@@ -232,16 +232,16 @@
 		                  	<div class="input-group">
 		                  		<span class="input-group-addon"><i class="fa fa-cubes"></i></span>
 				                <input type="number" name="u_kapasitas" id="u_kapasitas" class="form-control" placeholder="Kapasitas" required="">
-		                  		<span class="input-group-addon">buah</span>
+		                  		<span class="input-group-addon">pcs</span>
 				            </div>
-				        </div>   
+				        </div>
 	                </div>
 	                <div class="form-group">
 	                  	<label for="inputJabatan" class="col-sm-4">Supir</label>
 	                  	<div class="col-sm-8">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-				                <select class="form-control select" style="width: 100%;" name="u_supir" id="u_supir" required="">	
+				                <select class="form-control select" style="width: 100%;" name="u_supir" id="u_supir" required="">
 				                	<?php
 				                	$sql = "SELECT id, nip, nama_lengkap FROM pegawai WHERE jabatan='staff promosi'";
 				                	$result = mysqli_query($conn, $sql);
@@ -251,7 +251,7 @@
 				                		<?php
 				                	}
 				                	?>
-				                </select>	
+				                </select>
 				            </div>
 			            </div>
 	                </div>
@@ -275,7 +275,7 @@
 	        </div>
 	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	        	
+
 	        		<!-- ID  -->
 	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
 
@@ -292,7 +292,7 @@
 
 
 <script type="text/javascript">
-	
+
 	function ubah(id, plat_nomor, nama, tujuan_pengiriman, kapasitas, supir){
 		$('.modal-body input[name=id]').val(id);
 		$('.modal-body input[name=u_plat_nomor]').val(plat_nomor);
@@ -309,7 +309,7 @@
 
 
 <!-- Pesan Proses Simpan  -->
-<?php  
+<?php
 if (isset($_SESSION['simpan_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -356,7 +356,7 @@ if (isset($_SESSION['simpan_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Ubah  -->
-<?php  
+<?php
 if (isset($_SESSION['ubah_berhasil'])) {
 	?>
     <script type="text/javascript">
@@ -403,7 +403,7 @@ if (isset($_SESSION['ubah_berhasil'])) {
 ?>
 
 <!-- Pesan Proses Hapus  -->
-<?php  
+<?php
 if (isset($_SESSION['hapus_berhasil'])) {
 	?>
     <script type="text/javascript">

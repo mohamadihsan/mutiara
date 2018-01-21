@@ -114,11 +114,20 @@
 	        <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
 		          	<div class="form-group">
+	                  	<label for="inputNama" class="col-sm-3">Kode Barang</label>
+	                  	<div class="col-sm-9">
+	                  		<div class="input-group">
+				                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+				                <input type="text" name="kode" id="kode" class="form-control" placeholder="Kode Barang" required="" autofocus="">
+			            	</div>
+			            </div>
+	                </div>
+		          	<div class="form-group">
 	                  	<label for="inputNama" class="col-sm-3">Nama Barang</label>
 	                  	<div class="col-sm-9">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-				                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Barang" required="" autofocus="">
+				                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Barang" required="" >
 			            	</div>
 			            </div>
 	                </div>
@@ -180,7 +189,7 @@
 	                  	<div class="col-sm-9">
 	                  		<div class="input-group">
 				                <span class="input-group-addon"><i class="fa fa-check"></i></span>
-				                <input type="text" name="u_kode" id="u_kode" class="form-control" placeholder="Kode Barang" required="" disabled="">
+				                <input type="text" name="u_kode" id="u_kode" class="form-control" placeholder="Kode Barang" required="">
 			            	</div>
 			            </div>
 	                </div>

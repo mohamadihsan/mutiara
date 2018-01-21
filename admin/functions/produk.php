@@ -24,7 +24,8 @@ if (isset($_POST['simpan_produk'])) {
 	}
 
 	//inisialisasi
-	$kode 			= 'MS/P/'.$no_urut;
+	$kode 			= 'MT/P/'.$no_urut;
+	$kode 			= strtoupper(addslashes(trim($_POST['kode'])));
 	$nama 			= ucwords(addslashes(trim($_POST['nama'])));
 	$jenis_kemasan 	= ucwords(addslashes(trim($_POST['jenis_kemasan'])));
 	$satuan 		= ucwords(addslashes(trim($_POST['satuan'])));
@@ -43,12 +44,13 @@ if (isset($_POST['simpan_produk'])) {
 //ubah data
 if (isset($_POST['ubah_produk'])) {
 	$id 			= $_POST['id'];
+	$kode 			= ucwords(addslashes(trim($_POST['u_kode'])));
 	$nama 			= ucwords(addslashes(trim($_POST['u_nama'])));
 	$jenis_kemasan 	= ucwords(addslashes(trim($_POST['u_jenis_kemasan'])));
 	$satuan 		= ucwords(addslashes(trim($_POST['u_satuan'])));
 	$harga 			= addslashes(trim($_POST['u_harga']));
 
-	$sql = "UPDATE produk SET nama='$nama', jenis_kemasan='$jenis_kemasan', harga='$harga', satuan='$satuan' WHERE id='$id'";
+	$sql = "UPDATE produk SET kode='$kode', nama='$nama', jenis_kemasan='$jenis_kemasan', harga='$harga', satuan='$satuan' WHERE id='$id'";
 
 	if (mysqli_query($conn, $sql)) {
 	    $_SESSION['ubah_berhasil'] = true;
