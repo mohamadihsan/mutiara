@@ -67,7 +67,7 @@
 									    	$nip = $row['nip'];
 									    	$nama_panggilan = $row['nama_panggilan'];
 
-									    	$sql_status_po = "SELECT id FROM faktur_penjualan WHERE id_pemesanan='$id'";
+									    	$sql_status_po = "SELECT id FROM pemesanan_produk WHERE id='$id'";
 									    	$result_status_po=mysqli_query($conn,$sql_status_po);
 									    	$jml=mysqli_num_rows($result_status_po);
 									    	if ($jml==0) {
