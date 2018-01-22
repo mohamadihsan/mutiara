@@ -55,6 +55,7 @@
 
 			case 'kepala produksi':
 				include_once 'functions/produk.php';
+				include_once 'functions/komposisi.php';
 				include_once 'kepala-produksi/interfaces/_header.php';
 				include_once 'kepala-produksi/route.php';
 				include_once 'kepala-produksi/interfaces/_footer.php';

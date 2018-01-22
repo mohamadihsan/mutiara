@@ -1,6 +1,6 @@
-<?php  
-	
-	$menu = (isset($_GET['menu'])) ? $_GET['menu'] : '';	
+<?php
+
+	$menu = (isset($_GET['menu'])) ? $_GET['menu'] : '';
 
 	switch ($menu) {
 
@@ -22,8 +22,8 @@
 
 		case 'detail-supplier':
 			include_once 'interfaces/detail-supplier.php';
-			break;			
-			
+			break;
+
 		case 'profil':
 			include_once 'pages/profil/profil.php';
 			break;
@@ -32,17 +32,21 @@
 			include_once 'interfaces/kebutuhan.php';
 			break;
 
+		case 'detail-kebutuhan':
+			include_once 'interfaces/detail-kebutuhan.php';
+			break;
+
 		case 'mk-bahan-baku':
 			include_once 'interfaces/mk-bahan-baku.php';
 			break;
-			
+
 		case 'mk-produk':
 			include_once 'interfaces/mk-produk.php';
 			break;
-			
+
 		case 'pembelian-bahan-baku':
 			include_once 'interfaces/pembelian-bahan-baku.php';
-			break;	
+			break;
 
 		case 'produk':
 			include_once 'interfaces/produk.php';
@@ -50,7 +54,7 @@
 
 		case 'supplier':
 			include_once 'interfaces/supplier.php';
-			break;						
+			break;
 
 		default:
 			include_once 'interfaces/beranda.php';

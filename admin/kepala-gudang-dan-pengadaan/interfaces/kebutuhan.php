@@ -16,13 +16,13 @@
     <section class="content">
       	<div class="row">
         	<div class="col-xs-12">
-        		<?php  
+        		<?php
         		if (isset($_POST['periode'])) {
         			$post_periode = $_POST['bulan'].'-'.$_POST['tahun'];
         		}
         		?>
         		<form action="" method="post" accept-charset="utf-8">
-        			
+
 	                <div class="form-group">
 	                  	<div class="col-sm-12">
 	                  		Filter Peramalan untuk periode :
@@ -30,7 +30,7 @@
 	                  	<div class="col-sm-4">
 	                  		<div class="">
 	                  			<label for="inputBArang">Bulan</label>
-				                <select class="form-control select" style="width: 100%;" name="bulan" id="bulan" required="">	
+				                <select class="form-control select" style="width: 100%;" name="bulan" id="bulan" required="">
 				                	<option value="01" <?php if($_POST['bulan']=='01') echo "selected"; ?>>JANUARI</option>
 				                	<option value="02" <?php if($_POST['bulan']=='02') echo "selected"; ?>>FEBRUARI</option>
 				                	<option value="03" <?php if($_POST['bulan']=='03') echo "selected"; ?>>MARET</option>
@@ -49,8 +49,8 @@
 				        <div class="col-sm-3">
 	                  		<div class="">
 	                  			<label for="inputBArang">Tahun</label>
-				                <select class="form-control select" style="width: 100%;" name="tahun" id="tahun" required="">	
-				                	<?php  
+				                <select class="form-control select" style="width: 100%;" name="tahun" id="tahun" required="">
+				                	<?php
 				                	$sql = "SELECT DATE_FORMAT(tanggal, '%Y') as tahun FROM pemesanan_produk GROUP BY tahun";
 				                	$result = mysqli_query($conn, $sql);
 				                	while ($row=mysqli_fetch_assoc($result)) {
@@ -66,7 +66,7 @@
 				        <div class="col-sm-12"><br>
 				        	<button type="submit" name="periode" class="btn btn-success">Tampilkan Peramalan</button><br/><br/><br/>
 				        </div>
-				    </div>       
+				    </div>
         		</form>
 	            <?php
 	            if (isset($_POST['periode'])) { ?>
@@ -86,6 +86,7 @@
 						                  	<th width="10%">Stok Tersedia</th>
 						                  	<th width="10%">Peramalan</th>
 						                  	<th class="text-center" width="10%">Status</th>
+						                  	<th class="text-center" width="5%"></th>
 						                  	<!-- <th></th> -->
 						                </tr>
 						                </thead>
@@ -137,7 +138,7 @@
 											    	if ($penjualan_dua_bulan_kemaren=='') {
 											    		$penjualan_dua_bulan_kemaren = 0;
 											    	}
-											    	
+
 											    	$alpha = 0.1;
 
 											    	/*peramalan sebelumnya*/
@@ -167,7 +168,7 @@
 									                  	<td><?= ucwords($row['jenis_kemasan']) ?></td>
 									                  	<td class="text-center"><?= $data['jumlah_stok'] ?> buah</td>
 									                  	<td class="text-center">
-									                  		<?php  
+									                  		<?php
 									                  		if ($peramalan==0) {
 									                  			echo "<span class='label label-warning'>tidak didapat diramalkan</span>";
 									                  		}else{
@@ -176,7 +177,7 @@
 									                  		?>
 									                  	</td>
 									                  	<td class="text-center">
-									                  		<?php  
+									                  		<?php
 									                  		if ($peramalan=='') {
 									                  			echo "-";
 									                  		}else{
@@ -187,28 +188,41 @@
 									                  	<!-- <td width="10%" class="text-center">
 									                  		<button class="btn btn-sm btn-success" title="Pengajuan Pembelian" data-toggle="modal" data-target="#modalPengajuan" onclick="return pengajuan('<?= $id ?>')"><i class="fa fa-file-text-o"></i></button>
 									                  	</td> -->
+
+                                                        <?php
+								                  		if ($peramalan>0) {
+                                                            ?>
+                                                            <td>
+                                                                <a href="?menu=detail-kebutuhan&f=<?= $peramalan ?>&id=<?= $id ?>&periode=<?= $post_periode ?>" class="btn btn-sm" title="Detail"><i class="fa fa-file-text-o"></i></a>
+                                                            </td>
+                                                            <?php
+                                                        }else{
+                                                            ?>
+                                                            <td></td>
+                                                            <?php
+                                                        }?>
 									                </tr>
 											        <?php
 											    }
 											}
 							                ?>
-						                
+
 						                </tbody>
 					              	</table>
 					            </div>
 			              		<!-- /.tab-pane -->
-			              	</div>	
+			              	</div>
 			            </div>
 		            </div>
 		            <!-- /.tab-content -->
 	              	<?php
-	            } ?> 	
+	            } ?>
        		</div>
         	<!-- /.col -->
       	</div>
       	<!-- /.row -->
     </section>
-    <!-- /.content -->  
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -223,7 +237,7 @@
 	        </div>
 	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
 	        	<div class="modal-body">
-	        	
+
 	        		<!-- ID  -->
 	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
 
@@ -249,7 +263,7 @@
 
 
 <!-- Pesan Proses Simpan  -->
-<?php  
+<?php
 if (isset($_SESSION['simpan_berhasil'])) {
 	?>
     <script type="text/javascript">

@@ -24,6 +24,10 @@
 			include_once 'interfaces/detail-supplier.php';
 			break;
 
+		case 'komposisi':
+			include_once 'interfaces/komposisi.php';
+			break;
+
 		case 'peramalan':
 			include_once 'interfaces/peramalan.php';
 			break;
