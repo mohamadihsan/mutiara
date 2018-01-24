@@ -140,6 +140,8 @@
                                                             	7,
                                                             	6 ASC";
 											    	$result_peramalan = mysqli_query($conn,$sql_peramalan);
+                                                    $j=0;
+                                                    $jml_data = mysqli_num_rows($result_peramalan);
 											    	while($row_peramalan = mysqli_fetch_assoc($result_peramalan)){
                                                         $jumlah_penjualan_awal[$i] = $row_peramalan['jumlah_penjualan_awal'];
                                                         $periode[$i] = $row_peramalan['periode'];
@@ -267,6 +269,7 @@
                                                         <?php
 
                                                         $i++;
+                                                        $j++;
                                                     }
 											    }
 											}
