@@ -75,7 +75,7 @@
 		            	<div class="nav-tabs-custom">
 				            <div class="tab-content">
 				              	<div class="tab-pane active" id="tab_2-2">
-					            	<center><h3>Peramalan Produk Periode <?= $post_periode ?></h3></center>
+					            	<center><h3>Peramalan Produk Seluruh Periode <?= $post_periode ?></h3></center>
 					            	<table id="example1" class="table table-striped table-bordered dt-responsive nowrap">
 						                <thead>
 						                <tr class="bg-success">
