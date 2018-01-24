@@ -243,7 +243,7 @@
                                                                 $peramalan[$i] = $penjualan_bulan_kemaren[$i];
                                                             }else{
                                                                 /*hitung peramalan selanjutnya*/
-            											    	$peramalan[$i] = ceil(($alpha*$penjualan_bulan_kemaren[$i-1])+((1-$alpha)*$peramalan[$i-1]));
+            											    	$peramalan[$i] = ceil(($alpha*$penjualan_bulan_kemaren[$i-1])+((1-$alpha)*$jumlah_penjualan_awal[$i]));
                                                             }
                                                         }
                                                         ?>
