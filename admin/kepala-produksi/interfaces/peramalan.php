@@ -148,7 +148,7 @@
 											    	$periode = $row_peramalan['periode'];
 
 											    	/*hitung peramalan selanjutnya*/
-											    	$peramalan = ($alpha*$penjualan_bulan_kemaren)+((1-$alpha)*$peramalan_bulan_kemarin);
+											    	$peramalan = ($penjualan_bulan_kemaren)+((1-$alpha)*$peramalan_bulan_kemarin);
 
 											    	/*cek status ketersediaan barang*/
 											    	$sql_stok = "SELECT SUM(stok) as jumlah_stok FROM detail_produk WHERE id_produk='$id'";
