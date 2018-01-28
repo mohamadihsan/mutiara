@@ -5,29 +5,24 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
       <h1 style="opacity: 1">
-         Peramalan (Produksi)
+         Peramalan (Kebutuhan Bahan Baku)
       </h1>
       <ol class="breadcrumb">
         <li><a href="?menu=beranda"><i class="fa fa-home"></i> Beranda</a></li>
-        <li class="active"> Peramalan (Produksi)</li>
+        <li class="active"> Peramalan (Kebutuhan Bahan Baku)</li>
       </ol>
     </section>
 	<!-- Main content -->
     <section class="content">
       	<div class="row">
         	<div class="col-xs-12">
-                <?php
+        		<?php
         		if (isset($_POST['periode'])) {
         			$post_periode = $_POST['bulan'].'-'.$_POST['tahun'];
+
         		}
         		?>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <button class="btn btn-sm btn-success" title="Peramalan" data-toggle="modal" data-target="#modalPeramalan" onclick="return peramalan()"><i class="fa fa-file-text-o"></i> Tampilkan Peramalan</button>
-                    </div>
-                </div>
-
-                <!-- <form action="" method="post" accept-charset="utf-8">
+        		<!-- <form action="" method="post" accept-charset="utf-8">
 
 	                <div class="form-group">
 	                  	<div class="col-sm-12">
@@ -93,6 +88,7 @@
 						                  	<!-- <th width="10%">Stok Tersedia</th> -->
 						                  	<th width="10%">Peramalan</th>
 						                  	<!-- <th class="text-center" width="10%">Status</th> -->
+						                  	<th class="text-center" width="5%"></th>
 						                  	<!-- <th></th> -->
 						                </tr>
 						                </thead>
@@ -104,7 +100,6 @@
 
 											if (mysqli_num_rows($result) > 0) {
 												$no = 1;
-                                                $i=0;
 											    // keluarkan data dalam variabel row
 											    while($row = mysqli_fetch_assoc($result)) {
 											    	$id 	= $row['id'];
@@ -113,32 +108,7 @@
 											    	$harga 	= $row['harga'];
 											    	$jenis_kemasan 	= $row['jenis_kemasan'];
 
-											    	/*cari peramalan*/
-											    	// $sql_peramalan = "SELECT produk, SUM(jumlah) as jumlah_penjualan, produk.kode, produk.nama, produk.jenis_kemasan, DATE_FORMAT(pemesanan_produk.tanggal, '%m-%Y') as periode FROM detail_penjualan_produk, produk, pemesanan_produk WHERE produk.id=detail_penjualan_produk.produk AND detail_penjualan_produk.faktur=pemesanan_produk.id AND detail_penjualan_produk.produk='$id' AND  DATE_FORMAT(pemesanan_produk.tanggal, '%m-%Y')='$post_periode' GROUP BY DATE_FORMAT(pemesanan_produk.tanggal, '%m-%Y'), detail_penjualan_produk.produk";
-											    	// $result_peramalan = mysqli_query($conn,$sql_peramalan);
-											    	// $row_peramalan = mysqli_fetch_assoc($result_peramalan);
-											    	// $jumlah_penjualan = $row_peramalan['jumlah_penjualan'];
-											    	// $periode = $row_peramalan['periode'];
-
-											    	/*inisialisai periode 2 bulan sebelumnya*/
-											    	// $concat_periode = $_POST['tahun'].'-'.$_POST['bulan'].'-01';
-											    	// $periode_bulan_kemarin = date('m-Y', strtotime('-1 month', strtotime($concat_periode)));
-											    	// $periode_dua_bulan_kemarin = date('m-Y', strtotime('-2 month', strtotime($concat_periode)));
-                                                    //
-											    	// /
-                                                    //
-											    	// /*cari penjualan produk 2 bulan kemaren*/
-											    	// $sql_penjualan = "SELECT SUM(jumlah) as jumlah_penjualan FROM detail_penjualan_produk, produk, pemesanan_produk WHERE produk.id=detail_penjualan_produk.produk AND detail_penjualan_produk.faktur=pemesanan_produk.id AND detail_penjualan_produk.produk='$id' AND  DATE_FORMAT(pemesanan_produk.tanggal, '%m-%Y')='$periode_dua_bulan_kemarin' GROUP BY DATE_FORMAT(pemesanan_produk.tanggal, '%m-%Y'), detail_penjualan_produk.produk";
-											    	// $result_penjualan = mysqli_query($conn,$sql_penjualan);
-											    	// $row_penjualan = mysqli_fetch_assoc($result_penjualan);
-											    	// $penjualan_dua_bulan_kemaren = $row_penjualan['jumlah_penjualan'];
-                                                    //
-                                                    //
-											    	// if ($penjualan_dua_bulan_kemaren=='') {
-											    	// 	$penjualan_dua_bulan_kemaren = 0;
-											    	// }
-
-											    	$alpha = 0.1;
+                                                    $alpha = 0.1;
 
 											    	/*peramalan sebelumnya*/
 											    	$sql_peramalan = "SELECT
@@ -170,65 +140,49 @@
                                                             	7,
                                                             	6 ASC";
 											    	$result_peramalan = mysqli_query($conn,$sql_peramalan);
+                                                    $j=0;
+                                                    $jml_data = mysqli_num_rows($result_peramalan);
 											    	while($row_peramalan = mysqli_fetch_assoc($result_peramalan)){
                                                         $jumlah_penjualan_awal[$i] = $row_peramalan['jumlah_penjualan_awal'];
                                                         $periode[$i] = $row_peramalan['periode'];
                                                         $bulan = $row_peramalan['bulan'];
                                                         $tahun = $row_peramalan['tahun'];
-                                                        $periode_terakhir = $row_peramalan['periode'];
 
 
                                                         if ($bulan == '01') {
                                                             $periode_min_satu = '12-'.$tahun-1;
                                                             $bulan_min_satu = '12';
                                                             $tahun = $tahun-1;
-                                                            $bulan_terakhir = '02';
                                                         }else if ($bulan == '02') {
                                                             $periode_min_satu = '01-'.$tahun-1;
                                                             $bulan_min_satu = '01';
-                                                            $bulan_terakhir = '03';
                                                         }else if ($bulan == '03') {
                                                             $periode_min_satu = '02-'.$tahun-1;
                                                             $bulan_min_satu = '02';
-                                                            $bulan_terakhir = '04';
                                                         }else if ($bulan == '04') {
                                                             $periode_min_satu = '03-'.$tahun-1;
                                                             $bulan_min_satu = '03';
-                                                            $bulan_terakhir = '05';
                                                         }else if ($bulan == '05') {
                                                             $periode_min_satu = '04-'.$tahun-1;
                                                             $bulan_min_satu = '04';
-                                                            $bulan_terakhir = '06';
                                                         }else if ($bulan == '06') {
                                                             $periode_min_satu = '05-'.$tahun-1;
                                                             $bulan_min_satu = '05';
-                                                            $bulan_terakhir = '07';
                                                         }else if ($bulan == '07') {
                                                             $periode_min_satu = '06-'.$tahun-1;
                                                             $bulan_min_satu = '06';
-                                                            $bulan_terakhir = '08';
                                                         }else if ($bulan == '08') {
                                                             $periode_min_satu = '07-'.$tahun-1;
                                                             $bulan_min_satu = '07';
-                                                            $bulan_terakhir = '09';
                                                         }else if ($bulan == '09') {
                                                             $periode_min_satu = '08-'.$tahun-1;
                                                             $bulan_min_satu = '08';
-                                                            $bulan_terakhir = '10';
                                                         }else if ($bulan == '10') {
                                                             $periode_min_satu = '09-'.$tahun-1;
                                                             $bulan_min_satu = '09';
-                                                            $bulan_terakhir = '11';
                                                         }else if ($bulan == '11') {
                                                             $periode_min_satu = '10-'.$tahun-1;
                                                             $bulan_min_satu = '10';
-                                                            $bulan_terakhir = '12';
-                                                        }
-
-                                                        if ($bulan == '12') {
-                                                            $tahun_terakhir = $row_peramalan['tahun'] + 1;
-                                                        }else{
-                                                            $tahun_terakhir = $row_peramalan['tahun'];
                                                         }
 
                                                         // *cari penjualan produk bulan kemaren*/
@@ -267,11 +221,9 @@
                                                                 $peramalan[$i] = $penjualan_bulan_kemaren[$i];
                                                             }else{
                                                                 /*hitung peramalan selanjutnya*/
-            											    	$peramalan[$i] = ceil(($alpha*$penjualan_bulan_kemaren[$i-1])+((1-$alpha)*$jumlah_penjualan_awal[$i]));
+            											    	$peramalan[$i] = ceil(($alpha*$penjualan_bulan_kemaren[$i-1])+((1-$alpha)$jumlah_penjualan_awal[$i]));
                                                             }
                                                         }
-
-                                                        $peramalan_terakhir = $peramalan[$i];
                                                         ?>
                                                         <tr class="bg-success">
     									                  	<td><?= $no++; ?></td>
@@ -298,6 +250,18 @@
     									                  		}
     									                  		?>
     									                  	</td> -->
+                                                            <?php
+    								                  		if ($peramalan[$i]>0) {
+                                                                ?>
+                                                                <td>
+                                                                    <a href="?menu=detail-kebutuhan&f=<?= $peramalan[$i] ?>&id=<?= $id ?>&periode=<?= $periode[$i] ?>" class="btn btn-sm" title="Detail"><i class="fa fa-file-text-o"></i></a>
+                                                                </td>
+                                                                <?php
+                                                            }else{
+                                                                ?>
+                                                                <td></td>
+                                                                <?php
+                                                            }?>
     									                  	<!-- <td width="10%" class="text-center">
     									                  		<button class="btn btn-sm btn-success" title="Pengajuan Pembelian" data-toggle="modal" data-target="#modalPengajuan" onclick="return pengajuan('<?= $id ?>')"><i class="fa fa-file-text-o"></i></button>
     									                  	</td> -->
@@ -305,8 +269,8 @@
                                                         <?php
 
                                                         $i++;
+                                                        $j++;
                                                     }
-
 											    }
 											}
 							                ?>
@@ -356,119 +320,11 @@
 	</div>
 </div>
 
-<!-- Modal Peramalan -->
-<div class="modal fade" id="modalPeramalan" role="dialog">
-    <div class="modal-dialog modal-md">
-      	<div class="modal-content">
-        	<div class="modal-header">
-	          	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	          	<h4 class="modal-title"><i class="fa fa-file-text-o"></i> Peramalan</h4>
-	        </div>
-	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
-	        	<div class="modal-body">
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            Hasil Peramalan untuk periode selanjutnya:
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="">
-                                <label for="inputBArang">Bulan</label>
-                                <select class="form-control select" style="width: 100%;" name="bulan" id="bulan" required="" disabled>
-                                    <option value="01" <?php if($_POST['bulan']=='01') echo "selected"; ?>>JANUARI</option>
-                                    <option value="02" <?php if($_POST['bulan']=='02') echo "selected"; ?>>FEBRUARI</option>
-                                    <option value="03" <?php if($_POST['bulan']=='03') echo "selected"; ?>>MARET</option>
-                                    <option value="04" <?php if($_POST['bulan']=='04') echo "selected"; ?>>APRIL</option>
-                                    <option value="05" <?php if($_POST['bulan']=='05') echo "selected"; ?>>MEI</option>
-                                    <option value="06" <?php if($_POST['bulan']=='06') echo "selected"; ?>>JUNI</option>
-                                    <option value="07" <?php if($_POST['bulan']=='07') echo "selected"; ?>>JULI</option>
-                                    <option value="08" <?php if($_POST['bulan']=='08') echo "selected"; ?>>AGUSTUS</option>
-                                    <option value="09" <?php if($_POST['bulan']=='09') echo "selected"; ?>>SEPTEMBER</option>
-                                    <option value="10" <?php if($_POST['bulan']=='10') echo "selected"; ?>>OKTOBER</option>
-                                    <option value="11" <?php if($_POST['bulan']=='11') echo "selected"; ?>>NOVEMBER</option>
-                                    <option value="12" <?php if($_POST['bulan']=='12') echo "selected"; ?>>DESEMBER</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="">
-                                <label for="inputBarang">Tahun</label>
-                                <select class="form-control select" style="width: 100%;" name="tahun" id="tahun" required="" disabled>
-                                    <?php
-                                    $sql = "SELECT DATE_FORMAT(tanggal, '%Y') as tahun FROM pemesanan_produk GROUP BY tahun";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($row=mysqli_fetch_assoc($result)) {
-                                        $tahun = $row['tahun'];
-                                        ?>
-                                        <option value="<?= $tahun ?>" <?php if($_POST['tahun']=='$tahun') ?> ><?= strtoupper($tahun) ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="">
-                                <label for="inputBArang">Hasil Peramalan</label>
-                                <input type="text" name="peramalan_selanjutnya" id="peramalan_selanjutnya" class="form-control" placeholder="" required="" disabled>
-                                <input type="hidden" name="peramalan_terakhir" id="peramalan_terakhir" class="form-control" placeholder="" required="">
-                                <input type="hidden" name="jumlah_penjualan_terakhir" id="jumlah_penjualan_terakhir" class="form-control" placeholder="" required="">
-                            </div>
-                        </div>
-                    </div>
-		        </div>
-		        <div class="modal-footer">
-		          	<button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-		          	<!-- <button type="submit" class="btn btn-success" name="periode">Tampilkan Peramalan</button> -->
-		        </div>
-	        </form>
-    	</div>
-	</div>
-</div>
-
-<?php
-// *cari penjualan produk bulan selanjutnya*/
-$sql = "SELECT
-            SUM( jumlah ) AS jumlah_penjualan
-        FROM
-            detail_penjualan_produk,
-            produk,
-            pemesanan_produk
-        WHERE
-            produk.id = detail_penjualan_produk.produk
-            AND detail_penjualan_produk.faktur = pemesanan_produk.id
-            AND detail_penjualan_produk.produk = $id
-            AND DATE_FORMAT( pemesanan_produk.tanggal, '%m' ) = '$bulan'
-            AND DATE_FORMAT( pemesanan_produk.tanggal, '%Y' ) = '$tahun'
-        GROUP BY
-            DATE_FORMAT( pemesanan_produk.tanggal, '%m-%Y' ),
-            detail_penjualan_produk.produk";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
-$jumlah_penjualan_terakhir = $row['jumlah_penjualan'];
-
-/*validasi peramalan, jika bulan sebelumnya tidak terdapat penjualan maka anggap penjualan = 0*/
-if ($jumlah_penjualan_terakhir=='' OR $jumlah_penjualan_terakhir==null) {
-    $jumlah_penjualan_terakhir = 0;
-}
-
-/*hitung peramalan selanjutnya*/
-$peramalan_selanjutnya = ceil(($alpha*$jumlah_penjualan_terakhir)+((1-$alpha)*$peramalan_terakhir));
-
-?>
 
 <script type="text/javascript">
 
 	function pengajuan(id){
 		$('.modal-body input[name=id]').val(id);
-	}
-
-    function peramalan(){
-		$('.modal-body input[name=jumlah_penjualan_terakhir]').val('<?= $jumlah_penjualan_terakhir ?>');
-		$('.modal-body select[name=bulan]').val('<?= $bulan_terakhir ?>');
-		$('.modal-body select[name=tahun]').val('<?= $tahun_terakhir ?>');
-		$('.modal-body input[name=peramalan_terakhir]').val('<?= $peramalan_terakhir ?>');
-		$('.modal-body input[name=peramalan_selanjutnya]').val('<?= $peramalan_selanjutnya ?>');
 	}
 
 </script>
