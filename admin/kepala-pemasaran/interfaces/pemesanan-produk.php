@@ -86,7 +86,7 @@
 							                  		if($row['tanggal_pembayaran']==null){
 							                  			echo "-";
 						                  			}else{
-						                  				echo Tanggal($row['tanggal_pembayaran']).' ('.$jam_pembayaran.')';
+						                  				echo Tanggal($row['tanggal_pembayaran']);
 						                  			} ?>
 						                  		</td>
 							                  	<td class="text-center"><?= strtoupper($metode_pembayaran) ?></td>

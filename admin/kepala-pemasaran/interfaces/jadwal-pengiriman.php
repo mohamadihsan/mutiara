@@ -18,7 +18,7 @@
         	<div class="col-xs-12">
         		<div class="nav-tabs-custom">
 		            <ul class="nav nav-tabs pull-right">
-		              	<li class="active"><a href="?menu=jadwal-pengiriman&analisis" class="text-bold"><i class="fa fa-plus text-success"></i> Analisis Distribusi</a></li>
+		              	<li class="active"><a href="" data-toggle="modal" data-target="#modalAnalisis" class="text-bold"><i class="fa fa-plus text-success"></i> Analisis Distribusi</a></li>
 		              	<li class="active"><a href="#tab_2-2" data-toggle="tab">Daftar Pemesanan</a></li>
 		            </ul>
 		            <div class="tab-content">
@@ -140,6 +140,31 @@
 </div>
 <!-- /.content-wrapper -->
 
+<div class="modal fade" id="modalAnalisis" role="dialog">
+    <div class="modal-dialog modal-sm">
+      	<div class="modal-content">
+        	<div class="modal-header">
+	          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	          	<h4 class="modal-title"><i class="fa fa-file-text-o text-primary"></i> Konfirmasi</h4>
+	        </div>
+	       <form action="?menu=jadwal-pengiriman&analisis" method="get" accept-charset="utf-8" class="form-horizontal">
+	        	<div class="modal-body">
+
+	        		<!-- ID  -->
+	        		<input type="hidden" name="analisis" id="analisis" value="true" class="form-control" placeholder="" required="">
+	        		<input type="hidden" name="menu" id="menu" value="jadwal-pengiriman" class="form-control" placeholder="" required="">
+
+		          	<p>Analisis distribusi tanggal:</p>
+	        		<input type="date" name="tanggal" id="tanggal" value="<?= date('Y-m-d') ?>" class="form-control" placeholder="" required="">
+		        </div>
+		        <div class="modal-footer">
+		          	<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+		          	<button type="submit" class="btn btn-primary">Submit</button>
+		        </div>
+	        </form>
+    	</div>
+	</div>
+</div>
 
 <!-- Pesan Proses Simpan  -->
 <?php
