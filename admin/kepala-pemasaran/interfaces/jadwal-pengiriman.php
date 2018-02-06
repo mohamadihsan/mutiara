@@ -30,6 +30,7 @@
 				                  	<th>Nomor Faktur</th>
 				                  	<th>Pelanggan</th>
 				                  	<th>Tanggal Pengiriman</th>
+				                  	<th>Kendaraan</th>
                                     <th>Alamat Pengiriman</th>
 				                  	<th class="text-center" width="5%">Status Pengiriman</th>
 				                </tr>
@@ -40,8 +41,8 @@
 					                $sql = "
                                     SELECT
                                     	d.id,
-                                    	d.kendaraan,
-                                    	d.nomor_faktur,
+                                    	k.plat_nomor,
+                                    	pp.nomor_faktur,
                                     	d.`status`,
                                     	d.tanggal,
                                     	p.nama,
@@ -50,6 +51,7 @@
                                     	distribusi d
                                     LEFT JOIN pemesanan_produk pp ON pp.id = d.nomor_faktur
                                     LEFT JOIN pelanggan p ON p.id = pp.pelanggan
+                                    LEFT JOIN kendaraan k ON k.id=d.kendaraan
                                     ORDER BY
                                     	d.tanggal DESC";
 									$result = mysqli_query($conn, $sql);
@@ -62,7 +64,7 @@
 									    	$id = $row['id'];
 									    	$nomor_faktur = $row['nomor_faktur'];
 									    	$tanggal = $row['tanggal'];
-									    	$kendaraan = $row['kendaraan'];
+									    	$plat_nomor = $row['plat_nomor'];
 									    	$status = $row['status'];
 									    	$nama = $row['nama'];
 									    	$alamat = $row['alamat'];
@@ -73,6 +75,7 @@
 							                  	<td><?= strtoupper($row['nomor_faktur']) ?></td>
 							                  	<td><?= strtoupper($row['nama']) ?></td>
 							                  	<td><?= Tanggal($row['tanggal']).' ('.$jam_pemesanan.')' ?></td>
+                                                <td><?= $plat_nomor ?></td>
                                                 <td><?= $alamat ?></td>
 							                  	<td class="text-center">
 							                  		<?php
