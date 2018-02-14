@@ -1,5 +1,6 @@
 <?php
-
+// set time region
+date_default_timezone_set("Asia/Bangkok");
 //tambah data purchase order
 if (isset($_POST['simpan_pemesanan'])) {
 

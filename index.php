@@ -10,124 +10,235 @@ include_once 'admin/functions/login_supplier.php';
 ?>
 
 <!DOCTYPE html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CV.Mutiara Timur</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- jQuery 2.2.3 -->
-    <script src="admin/assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <!-- Bootstrap and Font Awesome css-->
-    <link rel="stylesheet" href="assets/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- Google fonts-->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <!-- Theme stylesheet-->
-    <link rel="stylesheet" href="assets/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="assets/css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="favicon.png">
-    <!-- gritter notification -->
-    <link rel="stylesheet" href="admin/assets/vendors/gritter/jquery.gritter.css" />
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-  </head>
-  <body style="background-color: #111111">
-    <div style="background-image: url('assets/img/paris.jpg')" class="main">
-      <div class="overlay"></div>
-      <div class="container">
-        <!-- <p class="social"><a href="#" title="" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" title="" class="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="instagram"><i class="fa fa-instagram"></i></a></p> -->
-        <!-- <h1 class="cursive">CV.Mutiara Timur</h1> -->
-        <h1 class="cursive">CV.Mutiara Timur</h1>
-        <!-- <h2 class="sub">Kami menjual Produk Kecap dan Sauce</h2> -->
-        <div class="mailing-list">
-          <!-- <h3 class="mailing-list-heading">Silahkan Login untuk memesan produk!</h3> -->
-          <div class="row">
-            <form method="post" action="" class="form-inline">
-              <div class="form-group">
-                <label for="nama_pengguna" class="sr-only"></label>
-                <input type="text" name="nama_pengguna" placeholder="Nama Pangguna" id="nama_pengguna" class="form-control transparent" required="">
-              </div>
-              <div class="form-group">
-                <label for="kata_sandi" class="sr-only"></label>
-                <input type="password" name="kata_sandi" placeholder="Kata Sandi" id="kata_sandi" class="form-control transparent" required="">
-              </div>
-              <button type="submit" name="login" class="btn btn-primary">Login Supplier</button>
-              <!-- <button class="btn btn-danger">Daftar </button> -->
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <p>&copy;2017 CV.Mutiara Timur</p>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tracking - Mutiara Timur</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1>Tracking Barang <strong>Mutiara Timur</strong></h1>
+                        <div class="description">
+                       	    <p>
+                                Layanan untuk memantau pesanan produk dengan mudah!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <input type="text" name="nomor_faktur" value="<?php if(isset($_POST['nomor_faktur'])) echo $_POST['nomor_faktur'] ?>" class="form-control" placeholder="Silahkan masukkan Nomor Faktur Pesananan Anda...">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                        <?php
+                        if (isset($_POST['nomor_faktur'])) {
+                            $nomor_faktur_post = $_POST['nomor_faktur'];
+
+                            // set time region
+                    		date_default_timezone_set("Asia/Bangkok");
+
+                    		function Tanggal($tanggal) {
+                    			$BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+                    			$tahun = substr($tanggal, 0, 4);
+                    			$bulan = substr($tanggal, 5, 2);
+                    			$tgl = substr($tanggal, 8, 2);
+
+                    			$hasil = $tgl . " " . $BulanIndo[(int) $bulan - 1] . " " . $tahun;
+                    			return ($hasil);
+                    		}
+
+                    		function Rupiah($rupiah) {
+                    			//format rupiah
+                    			$jumlah_desimal = "2";
+                    			$pemisah_desimal = ",";
+                    			$pemisah_ribuan = ".";
+
+                    			$hasil = number_format($rupiah, $jumlah_desimal, $pemisah_desimal, $pemisah_ribuan);
+                    			return ($hasil);
+                    		}
+
+                            $sql = "
+                            SELECT
+                            	pemesanan_produk.id,
+                            	pemesanan_produk.nomor_faktur,
+                            	pemesanan_produk.tanggal_pembayaran,
+                            	pemesanan_produk.metode_pembayaran,
+                            	pemesanan_produk.tanggal,
+                            	pemesanan_produk.status_pembayaran,
+                            	pelanggan.nama,
+                            	pelanggan.kode,
+                            	DATE_FORMAT(pemesanan_produk.tanggal, '%H:%i:%s') AS jam_pemesanan,
+                            	DATE_FORMAT(
+                            		tanggal_pembayaran,
+                            		'%H:%i:%s'
+                            	) AS jam_pembayaran,
+                            	pegawai.nip,
+                            	pegawai.nama_panggilan,
+                            	pelanggan.alamat,
+                            	distribusi.status as status_pengiriman,
+                            	distribusi.tanggal AS tanggal_pengiriman
+                            FROM
+                            	pemesanan_produk
+                            LEFT JOIN pelanggan ON pemesanan_produk.pelanggan = pelanggan.id
+                            LEFT JOIN pegawai ON pemesanan_produk.pegawai = pegawai.id
+                            LEFT JOIN distribusi ON distribusi.nomor_faktur = pemesanan_produk.id
+                            WHERE
+                            	pemesanan_produk.nomor_faktur = '$nomor_faktur_post'
+                            ORDER BY
+                            	tanggal DESC";
+                            $result = mysqli_query($conn, $sql);
+
+                            if (mysqli_num_rows($result) > 0) {
+                                // keluarkan data dalam variabel row
+                                $row = mysqli_fetch_assoc($result);
+                                $id = $row['id'];
+                                $nomor_faktur = $row['nomor_faktur'];
+                                $tanggal_pembayaran = $row['tanggal_pembayaran'];
+                                $metode_pembayaran = $row['metode_pembayaran'];
+                                $status_pembayaran = $row['status_pembayaran'];
+                                $tanggal = $row['tanggal'];
+                                $nama = $row['nama'];
+                                $nama = $row['nama'];
+                                $kode = $row['kode'];
+                                $jam_pemesanan = $row['jam_pemesanan'];
+                                $jam_pembayaran = $row['jam_pembayaran'];
+                                $nip = $row['nip'];
+                                $alamat = $row['alamat'];
+                                $status_pengiriman = $row['status_pengiriman'];
+                                $tanggal_pengiriman = $row['tanggal_pengiriman'];
+
+                                $sql_status_po = "SELECT id FROM pemesanan_produk WHERE id='$id'";
+                                $result_status_po=mysqli_query($conn,$sql_status_po);
+                                $jml=mysqli_num_rows($result_status_po);
+                                if ($jml==0) {
+                                    $status_po = 'belum disetujui';
+                                }else{
+                                    $status_po = 'sudah disetujui';
+                                }
+
+                                if ($tanggal_pembayaran == null) {
+                                    $status = 'Menunggu Pembayaran';
+                                }else if($status_pengiriman != '0'){
+                                    $status = 'Sudah dikirim';
+                                }else{
+                                    $status = 'Sedang diproses';
+                                }
+                                ?>
+                                <form role="form" action="" method="post" class="f1">
+                            		<div class="f1-steps">
+                            			<div class="f1-progress">
+                            			    <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                            			</div>
+                            			<div class="f1-step active">
+                            				<div class="f1-step-icon"><i class="fa fa-money"></i></div>
+                            				<p>Pembayaran</p>
+                            			</div>
+                            			<div class="f1-step <?php if($tanggal_pembayaran!=null) echo 'active' ?>">
+                            				<div class="f1-step-icon"><i class="fa fa-cubes"></i></div>
+                            				<p>Sedang diproses</p>
+                            			</div>
+                            		    <div class="f1-step <?php if($status=='Sudah dikirim') echo 'active' ?>">
+                            				<div class="f1-step-icon"><i class="fa fa-truck"></i></div>
+                            				<p>Sudah Dikirim</p>
+                            			</div>
+                            		</div>
+
+                            		<fieldset>
+                            		    <h4>Detail Pesanan:</h4>
+                            			<table class="table table-responsive">
+                                            <tr>
+                                                <th>No. Faktur</th>
+                                                <td>: <?= $nomor_faktur ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal Pemesanan</th>
+                                                <td>: <?= Tanggal($tanggal) ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal Pengiriman</th>
+                                                <td>: <?= Tanggal($tanggal_pengiriman) ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nama Pelanggan</th>
+                                                <td>: <?= $nama ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Alamat</th>
+                                                <td>: <?= $alamat ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Status</th>
+                                                <td>: <?= $status ?></td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                            	</form>
+                                <?php
+                            }else{
+                                ?>
+                                <p>Data tidak ditemukan</p>
+                                <?php
+                            }
+                        }
+                        ?>
+
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-6">
-              <p class="credit">Code by <a href="https://www.bootstrapious.com">Bootstrapious</a><br />& <a href="https://remoteplease.com">RemotePlease</a></p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <!-- <button type="button" data-toggle="collapse" data-target="#style-switch" id="style-switch-button" class="btn btn-template-primary btn-sm"><i class="fa fa-cog fa-2x"></i></button> -->
-    <div id="style-switch" class="collapse">
-      <h4 class="text-uppercase">Select theme variant</h4>
-      <form class="mb-small">
-        <select name="page" id="page" class="form-control">
-          <option value="">select variant</option>
-          <option value="index.html">image background</option>
-          <option value="video.html">video background</option>
-        </select>
-      </form>
-    </div>
-    <!-- Pesan Proses Login Gagal  -->
-    <?php if (isset($_SESSION['error_login'])) {
-      ?>
-        <script type="text/javascript">
-        $(function(){
-          $.gritter.add({
-              // (string | mandatory) the heading of the notification
-              title: 'Gagal!',
-              // (string | mandatory) the text inside the notification
-              text: 'Error : Nama pengguna dan Kata sandi tidak terdaftar.',
-              // (string | optional) the image to display on the left
-              image: 'admin/assets/images/gagal.png',
-              // (bool | optional) if you want it to fade out on its own or just sit there
-              sticky: false,
-              // (int | optional) the time you want it to be alive for before fading out
-              time: ''
-            });
-        });
-      </script>
-        <?php
-        /*unset session*/
-        unset($_SESSION['error_login']);
-    }
-    ?>
-    <!-- JAVASCRIPT FILES -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.cookie.js"></script>
-    <script src="assets/js/front.js"></script>
-    <!-- gritter notification -->
-    <script src="admin/assets/vendors/gritter/jquery.gritter.min.js"></script>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
-  </body>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
 </html>

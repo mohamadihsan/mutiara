@@ -79,7 +79,7 @@
                                                 <td><?= $alamat ?></td>
 							                  	<td class="text-center">
 							                  		<?php
-							                  		if ($status=='B') {
+							                  		if ($status=='B' OR $status == '0') {
 							                  			?><span class="label label-warning">belum dikirim</span><?php
 							                  		}else{
 							                  			?><span class="label label-success">sudah dikirim</span><?php
