@@ -53,7 +53,7 @@
 				                <tbody>
 
 					                <?php
-					                $sql = "SELECT id, kode, nama, kota, alamat, no_telp, email, nama_pengguna FROM pelanggan";
+					                $sql = "SELECT id, kode, nama, kota, provinsi, kabupaten, kecamatan, alamat, no_telp, email, nama_pengguna FROM pelanggan";
 									$result = mysqli_query($conn, $sql);
 
 									if (mysqli_num_rows($result) > 0) {
@@ -64,6 +64,9 @@
 									    	$kode = $row['kode'];
 									    	$nama = $row['nama'];
 									    	$kota = $row['kota'];
+									    	$kabupaten = $row['kabupaten'];
+									    	$provinsi = $row['provinsi'];
+									    	$kecamatan = $row['kecamatan'];
 									    	$alamat = $row['alamat'];
 									    	$no_telp = $row['no_telp'];
 									    	$email = $row['email'];
@@ -76,9 +79,9 @@
 							                  	<td><?= $no_telp ?></td>
 							                  	<td><?= $email ?></td>
 							                  	<td><?= ucwords($kota) ?></td>
-							                  	<td><?= $alamat ?></td>
+							                  	<td><?= $alamat. ', '.$provinsi.', '.$kabupaten.', '.$kecamatan ?></td>
 							                  	<td width="10%" class="text-right">
-							                  		<button class="btn btn-sm btn-warning" title="Ubah Data Pelanggan" data-toggle="modal" data-target="#modalUbahPelanggan" onclick="return ubah('<?= $id ?>','<?= $kode ?>','<?= $nama ?>','<?= $kota ?>','<?= $alamat ?>','<?= $no_telp ?>','<?= $email ?>','<?= $nama_pengguna ?>')"><i class="fa fa-edit"></i></button>
+							                  		<button class="btn btn-sm btn-warning" title="Ubah Data Pelanggan" data-toggle="modal" data-target="#modalUbahPelanggan" onclick="return ubah('<?= $id ?>','<?= $kode ?>','<?= $nama ?>','<?= $kota ?>','<?= $provinsi ?>','<?= $kabupaten ?>','<?= $kecamatan ?>','<?= $alamat ?>','<?= $no_telp ?>','<?= $email ?>','<?= $nama_pengguna ?>')"><i class="fa fa-edit"></i></button>
 							                  		<button class="btn btn-sm btn-danger" title="Hapus Data" data-toggle="modal" data-target="#modalHapus" onclick="return hapus('<?= $id ?>')"><i class="fa fa-trash"></i></button>
 							                  	</td>
 							                </tr>
@@ -175,6 +178,33 @@
 						                </select>
 						            </div>
 					            </div>
+			                </div>
+			                <div class="form-group">
+			                  	<label for="inputNamaPanggilan" class="col-sm-4">Provinsi</label>
+			                  	<div class="col-sm-8">
+				                  	<div class="input-group">
+				                  		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+						                <input type="text" name="provinsi" id="provinsi" class="form-control" placeholder="Provinsi">
+						            </div>
+						        </div>
+			                </div>
+			                <div class="form-group">
+			                  	<label for="inputNamaPanggilan" class="col-sm-4">Kabupaten</label>
+			                  	<div class="col-sm-8">
+				                  	<div class="input-group">
+				                  		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+						                <input type="text" name="kabupaten" id="kabupaten" class="form-control" placeholder="Kabupaten">
+						            </div>
+						        </div>
+			                </div>
+			                <div class="form-group">
+			                  	<label for="inputNamaPanggilan" class="col-sm-4">Kecamatan</label>
+			                  	<div class="col-sm-8">
+				                  	<div class="input-group">
+				                  		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+						                <input type="text" name="kecamatan" id="kecamatan" class="form-control" placeholder="Kecamatan">
+						            </div>
+						        </div>
 			                </div>
 			                <div class="form-group">
 			                  	<label for="inputNamaPanggilan" class="col-sm-4">Alamat</label>
@@ -285,6 +315,33 @@
 				            </div>
 			            </div>
 	                </div>
+                    <div class="form-group">
+                        <label for="inputNamaPanggilan" class="col-sm-4">Provinsi</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" name="u_provinsi" id="u_provinsi" class="form-control" placeholder="Provinsi">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNamaPanggilan" class="col-sm-4">Kabupaten</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" name="u_kabupaten" id="u_kabupaten" class="form-control" placeholder="Kabupaten">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNamaPanggilan" class="col-sm-4">Kecamatan</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" name="u_kecamatan" id="u_kecamatan" class="form-control" placeholder="Kecamatan">
+                            </div>
+                        </div>
+                    </div>
 	                <div class="form-group">
 	                  	<label for="inputNamaPanggilan" class="col-sm-4">Alamat</label>
 	                  	<div class="col-sm-8">
@@ -332,11 +389,14 @@
 
 <script type="text/javascript">
 
-	function ubah(id, kode, nama, kota, alamat, no_telp, email, nama_pengguna){
+	function ubah(id, kode, nama, kota, provinsi, kabupaten, kecamatan, alamat, no_telp, email, nama_pengguna){
 		$('.modal-body input[name=id]').val(id);
 		$('.modal-body input[name=u_kode]').val(kode);
 		$('.modal-body input[name=u_nama]').val(nama);
 		$('.modal-body select[name=u_kota]').val(kota);
+		$('.modal-body select[name=u_provinsi]').val(provinsi);
+		$('.modal-body select[name=u_kabupaten]').val(kabupaten);
+		$('.modal-body select[name=u_kecamatan]').val(kecamatan);
 		$('.modal-body textarea[name=u_alamat]').val(alamat);
 		$('.modal-body input[name=u_no_telp]').val(no_telp);
 		$('.modal-body input[name=u_email]').val(email);

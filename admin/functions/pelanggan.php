@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //tambah data
 if (isset($_POST['simpan_pelanggan'])) {
@@ -7,6 +7,9 @@ if (isset($_POST['simpan_pelanggan'])) {
 	$kode 			= strtoupper(addslashes(trim($_POST['kode'])));
 	$nama 			= ucwords(addslashes(trim($_POST['nama'])));
 	$kota 			= addslashes(trim($_POST['kota']));
+	$provinsi 		= addslashes(trim($_POST['provinsi']));
+	$kabupaten 		= addslashes(trim($_POST['kabupaten']));
+	$kecamatan 		= addslashes(trim($_POST['kecamatan']));
 	$alamat 		= addslashes(trim($_POST['alamat']));
 	$no_telp 		= ucwords(addslashes(trim($_POST['no_telp'])));
 	$email 			= addslashes(trim($_POST['email']));
@@ -14,9 +17,10 @@ if (isset($_POST['simpan_pelanggan'])) {
 	$kata_sandi 	= addslashes(trim($_POST['kata_sandi']));
 	$kata_sandi 	= md5($kata_sandi);
 
-	
 
-	$sql = "INSERT INTO pelanggan (kode, nama, kota, alamat, no_telp, email, nama_pengguna, kata_sandi) VALUES ('$kode', '$nama', '$kota', '$alamat', '$no_telp', '$email', '$nama_pengguna', '$kata_sandi')";
+
+	$sql = "INSERT INTO pelanggan (kode, nama, kota, provinsi, kabupaten, kecamatan, alamat, no_telp, email, nama_pengguna, kata_sandi)
+			VALUES ('$kode', '$nama', '$kota', '$provinsi', '$kabupaten', '$kecamatan', '$alamat', '$no_telp', '$email', '$nama_pengguna', '$kata_sandi')";
 
 	if (mysqli_query($conn, $sql)) {
 	    $_SESSION['simpan_berhasil'] = true;
@@ -25,18 +29,21 @@ if (isset($_POST['simpan_pelanggan'])) {
 	}
 }
 
-//ubah data 
+//ubah data
 if (isset($_POST['ubah_pelanggan'])) {
 
 	//inisialisasi
 	$id 			= $_POST['id'];
 	$nama 			= ucwords(addslashes(trim($_POST['u_nama'])));
 	$kota 			= addslashes(trim($_POST['u_kota']));
+	$provinsi 		= addslashes(trim($_POST['u_provinsi']));
+	$kabupaten 		= addslashes(trim($_POST['u_kabupaten']));
+	$kecamatan 		= addslashes(trim($_POST['u_kecamatan']));
 	$alamat 		= addslashes(trim($_POST['u_alamat']));
 	$no_telp 		= ucwords(addslashes(trim($_POST['u_no_telp'])));
 	$email 			= addslashes(trim($_POST['u_email']));
 
-	$sql = "UPDATE pelanggan SET nama='$nama', kota='$kota', alamat='$alamat', no_telp='$no_telp', email='$email' WHERE id='$id'";
+	$sql = "UPDATE pelanggan SET nama='$nama', kota='$kota', provinsi='$provinsi', kabupaten='$kabupaten', kecamatan='$kecamatan', alamat='$alamat', no_telp='$no_telp', email='$email' WHERE id='$id'";
 
 	if (mysqli_query($conn, $sql)) {
 	    $_SESSION['ubah_berhasil'] = true;
