@@ -60,7 +60,8 @@ include_once 'admin/functions/login_supplier.php';
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
+                    <!-- <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box"> -->
+                    <div class="">
                         <form action="" method="post">
                             <div class="form-group">
                                 <input type="text" name="nomor_faktur" value="<?php if(isset($_POST['nomor_faktur'])) echo $_POST['nomor_faktur'] ?>" class="form-control" placeholder="Silahkan masukkan Nomor Faktur Pesananan Anda...">
@@ -162,11 +163,15 @@ include_once 'admin/functions/login_supplier.php';
                                 }else{
                                     $status = 'Sedang diproses';
                                 }
+
+                                if(date('Y-m-d',strtotime($tanggal_pengiriman)) < date('Y-m-d')){
+                                    $status = 'Sudah diterima';
+                                }
                                 ?>
                                 <form role="form" action="" method="post" class="f1">
                             		<div class="f1-steps">
                             			<div class="f1-progress">
-                            			    <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                            			    <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="4" style="width: 16.66%;"></div>
                             			</div>
                             			<div class="f1-step active">
                             				<div class="f1-step-icon"><i class="fa fa-money"></i></div>
@@ -179,6 +184,19 @@ include_once 'admin/functions/login_supplier.php';
                             		    <div class="f1-step <?php if($status=='Sudah dikirim') echo 'active' ?>">
                             				<div class="f1-step-icon"><i class="fa fa-truck"></i></div>
                             				<p>Sudah Dikirim</p>
+                            			</div>
+                            		</div>
+                                    <div class="f1-steps">
+                            			<!-- <div class="f1-progress">
+                            			    <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="1" style="width: 0%;"></div>
+                            			</div> -->
+                            			<div class="f1-step ">
+                            				<div class=""></div>
+                            				<p></p>
+                            			</div>
+                            		    <div class="f1-step <?php if($status=='Sudah diterima') echo 'active' ?>">
+                            				<div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                            				<p>Diterima</p>
                             			</div>
                             		</div>
 
