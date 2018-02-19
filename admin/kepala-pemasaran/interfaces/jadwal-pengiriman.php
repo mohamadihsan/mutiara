@@ -175,6 +175,7 @@
     				                  	<th>Kendaraan</th>
                                         <th>Alamat Pengiriman</th>
     				                  	<th class="text-center" width="5%">Status Pengiriman</th>
+                                        <th></th>
     				                </tr>
     				                </thead>
     				                <tbody>
@@ -221,12 +222,21 @@
                                                     <td><?= $alamat ?></td>
     							                  	<td class="text-center">
     							                  		<?php
-    							                  		if ($status=='B' OR $status == '0') {
+    							                  		if ($status == '0') {
     							                  			?><span class="label label-warning">belum dikirim</span><?php
     							                  		}else{
     							                  			?><span class="label label-success">sudah dikirim</span><?php
     							                  		}
     							                  		?>
+    							                  	</td>
+                                                    <td>
+                                                        <?php
+                                                        if ($status=='0') {
+                                                            ?>
+                                                            <button class="btn btn-sm btn-success" title="Update" data-toggle="modal" data-target="#modalHapus" onclick="return hapus('<?= $id ?>')"><i class="fa fa-truck"></i></button>
+                                                            <?php
+                                                        }
+                                                        ?>
     							                  	</td>
     							                </tr>
     									        <?php
@@ -280,6 +290,37 @@
     	</div>
 	</div>
 </div>
+
+<div class="modal fade" id="modalHapus" role="dialog">
+    <div class="modal-dialog modal-md">
+      	<div class="modal-content">
+        	<div class="modal-header">
+	          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	          	<h4 class="modal-title"><i class="fa fa-user text-success"></i> Update Status</h4>
+	        </div>
+	       <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
+	        	<div class="modal-body">
+
+	        		<!-- ID  -->
+	        		<input type="hidden" name="id" id="id" class="form-control" placeholder="" required="">
+
+		          	<p>Update status bahwa barang sudah diterima pelanggan?</p>
+		        </div>
+		        <div class="modal-footer">
+		          	<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+		          	<button type="submit" class="btn btn-success" name="validasi_penerimaan">Update</button>
+		        </div>
+	        </form>
+    	</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	function hapus(id){
+		$('.modal-body input[name=id]').val(id);
+	}
+</script>
 
 <!-- Pesan Proses Simpan  -->
 <?php

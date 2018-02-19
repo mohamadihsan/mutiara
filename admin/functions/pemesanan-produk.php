@@ -138,4 +138,16 @@ if (isset($_POST['hapus_barang_masuk']) OR isset($_POST['hapus_barang_keluar']))
 	}
 }
 
+if (isset($_POST['validasi_penerimaan'])) {
+	$id 	= $_POST['id'];
+
+	$sql 	= "UPDATE distribusi SET status='1' WHERE id='$id'";
+
+	if (mysqli_query($conn, $sql)) {
+	    $_SESSION['ubah_berhasil'] = true;
+	} else {
+		$_SESSION['ubah_gagal'] = true;
+	}
+}
+
 ?>

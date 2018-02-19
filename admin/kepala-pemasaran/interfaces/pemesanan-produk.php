@@ -13,117 +13,322 @@
       </ol>
     </section>
 	<!-- Main content -->
-    <section class="content">
-      	<div class="row">
-        	<div class="col-xs-12">
-        		<div class="nav-tabs-custom">
-		            <ul class="nav nav-tabs pull-right">
-		              	<li class="active"><a href="" data-toggle="modal" data-target="#modalTambah" class="text-bold"><i class="fa fa-plus text-success"></i> Tambah</a></li>
-		              	<li class="active"><a href="#tab_2-2" data-toggle="tab">Daftar Pemesanan</a></li>
-		            </ul>
-		            <div class="tab-content">
-		              	<div class="tab-pane active" id="tab_2-2">
-			            	<table id="example1" class="table table-striped table-bordered dt-responsive nowrap">
-				                <thead>
-				                <tr class="bg-success">
-				                  	<th width="5%">No</th>
-				                  	<th>Nomor Faktur</th>
-				                  	<th>Pelanggan</th>
-				                  	<th>Tanggal Pemesanan</th>
-				                  	<th>Tanggal Pembayaran</th>
-				                  	<th class="text-center">Metode Pembayaran</th>
-				                  	<th class="text-center">Status PO</th>
-				                  	<th>Dilayani</th>
-				                  	<th></th>
-				                </tr>
-				                </thead>
-				                <tbody>
+    <?php
+    if (isset($_GET['detail'])) {
+        $get_id = $_GET['detail'];
 
-					                <?php
-					                $sql = "
-					                SELECT pemesanan_produk.id, pemesanan_produk.nomor_faktur, pemesanan_produk.tanggal_pembayaran, pemesanan_produk.metode_pembayaran, pemesanan_produk.tanggal, pemesanan_produk.status_pembayaran, pelanggan.nama, pelanggan.kode,  DATE_FORMAT(tanggal, '%H:%i:%s') AS jam_pemesanan, DATE_FORMAT(tanggal_pembayaran, '%H:%i:%s') AS jam_pembayaran, pegawai.nip, pegawai.nama_panggilan
-					                FROM pemesanan_produk
-					                LEFT JOIN pelanggan ON pemesanan_produk.pelanggan=pelanggan.id
-					                LEFT JOIN pegawai ON pemesanan_produk.pegawai=pegawai.id
-					                ORDER BY tanggal DESC";
-									$result = mysqli_query($conn, $sql);
+        $sql = "
+        SELECT
+        	pemesanan_produk.id,
+        	pemesanan_produk.nomor_faktur,
+        	pemesanan_produk.tanggal_pembayaran,
+        	pemesanan_produk.metode_pembayaran,
+        	pemesanan_produk.tanggal,
+        	pemesanan_produk.status_pembayaran,
+        	pelanggan.nama,
+        	pelanggan.alamat,
+        	pelanggan.kode,
+        	DATE_FORMAT(tanggal, '%H:%i:%s') AS jam_pemesanan,
+        	DATE_FORMAT(
+        		tanggal_pembayaran,
+        		'%H:%i:%s'
+        	) AS jam_pembayaran,
+        	pegawai.nip,
+        	pegawai.nama_panggilan
+        FROM
+        	pemesanan_produk
+        LEFT JOIN pelanggan ON pemesanan_produk.pelanggan = pelanggan.id
+        LEFT JOIN pegawai ON pemesanan_produk.pegawai = pegawai.id
+        WHERE pemesanan_produk.id='$get_id'
+        ORDER BY
+        	tanggal DESC";
+        $result = mysqli_query($conn, $sql);
+        $jumlah_transaksi = mysqli_num_rows($result);
+        // keluarkan data dalam variabel row
+        $row = mysqli_fetch_assoc($result);
+        $id = $row['id'];
+        $nomor_faktur = $row['nomor_faktur'];
+        $status_pembelian = $row['status_pembelian'];
+        $status_pembayaran = $row['status_pembayaran'];
+        $tanggal = $row['tanggal'];
+        $tanggal_pembayaran = $row['tanggal_pembayaran'];
+        $nama = $row['nama'];
+        $alamat = $row['alamat'];
+        $jam_pemesanan = $row['jam_pemesanan'];
+        $jam_pembayaran = $row['jam_pembayaran'];
 
-									if (mysqli_num_rows($result) > 0) {
-										$j=0;
-										$no = 1;
-									    // keluarkan data dalam variabel row
-									    while($row = mysqli_fetch_assoc($result)) {
-									    	$id = $row['id'];
-									    	$nomor_faktur = $row['nomor_faktur'];
-									    	$tanggal_pembayaran = $row['tanggal_pembayaran'];
-									    	$metode_pembayaran = $row['metode_pembayaran'];
-									    	$status_pembayaran = $row['status_pembayaran'];
-									    	$tanggal = $row['tanggal'];
-									    	$nama = $row['nama'];
-									    	$nama_panggilan = $row['nama_panggilan'];
-									    	$kode = $row['kode'];
-									    	$jam_pemesanan = $row['jam_pemesanan'];
-									    	$jam_pembayaran = $row['jam_pembayaran'];
-									    	$nip = $row['nip'];
-									    	$nama_panggilan = $row['nama_panggilan'];
+        ?>
 
-									    	$sql_status_po = "SELECT id FROM pemesanan_produk WHERE id='$id'";
-									    	$result_status_po=mysqli_query($conn,$sql_status_po);
-									    	$jml=mysqli_num_rows($result_status_po);
-									    	if ($jml==0) {
-									    		$status_po[$j] = 'belum disetujui';
-									    	}else{
-									    		$status_po[$j] = 'sudah disetujui';
-									    	}
-									    	?>
-									        <tr>
-							                  	<td><?= $no++; ?></td>
-							                  	<td><?= strtoupper($row['nomor_faktur']) ?></td>
-							                  	<td><?= strtoupper($row['nama']) ?></td>
-							                  	<td><?= Tanggal($row['tanggal']).' ('.$jam_pemesanan.')' ?></td>
-							                  	<td>
-							                  		<?php
-							                  		if($row['tanggal_pembayaran']==null){
-							                  			echo "-";
-						                  			}else{
-						                  				echo Tanggal($row['tanggal_pembayaran']);
-						                  			} ?>
-						                  		</td>
-							                  	<td class="text-center"><?= strtoupper($metode_pembayaran) ?></td>
-							                  	<td class="text-center">
-							                  		<?php
-							                  		if ($status_po[$j]=='belum disetujui') {
-							                  			?><span class="label label-warning">belum disetujui</span><?php
-							                  		}else{
-							                  			?><span class="label label-success">sudah disetujui</span><?php
-							                  		}
-							                  		?>
-							                  	</td>
-							                  	<td><?= strtoupper($row['nip']).' - '.strtoupper($nama_panggilan) ?></td>
-							                  	<td width="10%" class="text-center">
-							                  		<button class="btn btn-sm btn-default" title="Detail PO" data-toggle="modal" data-target="#modalDetailPO" onclick="return detail_pemesanan('<?= $id ?>', '<?= $nomor_faktur ?>', '<?= $tanggal_pembayaran ?>', '<?= $metode_pembayaran ?>', '<?= $tanggal ?>', '<?= $nama ?>', '<?= $kode ?>', '<?= $jam_pemesanan ?>', '<?= $jam_pembayaran ?>', '<?= $status_po[$j] ?>')"><i class="fa fa-file-text-o"></i></button>
-							                  		<!-- <button class="btn btn-sm btn-success" title="Konfirmasi" data-toggle="modal" data-target="#modalKonfirmasi" onclick="return konfirmasi('<?= $id ?>')"><i class="fa fa-check"></i> Terima</button> -->
-							                  	</td>
-							                </tr>
-									        <?php
-									        $j++;
-									    }
-									}
-					                ?>
+        <section class="invoice">
+          <!-- title row -->
+          <div class="row">
+            <div class="col-xs-12">
+              <h2 class="page-header">
+                <i class="fa fa-file-text-o"></i> Faktur Pemesanan.
+                <small class="pull-right">Tanggal: <?= Tanggal($tanggal) ?></small>
+              </h2>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- info row -->
+          <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+              Dari
+              <address>
+                <strong>CV.Mutiara Timur.</strong><br>
+                Cianjur<br>
+                <!-- Telp: (804) 123-5432<br> -->
+                <!-- Email: info@almasaeedstudio.com -->
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              Kepada
+              <address>
+                <strong><?= $nama ?></strong><br>
+                <?= $alamat ?>
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              <b>No. Faktur : <?= $nomor_faktur ?></b><br>
+              <br>
+              <b>Tgl Pembayaran:</b> <?= Tanggal($tanggal_pembayaran) ?><br>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
 
-				                </tbody>
-			              	</table>
-			            </div>
-		              	<!-- /.tab-pane -->
-		            </div>
-		            <!-- /.tab-content -->
-		        </div>
-		        <!-- nav-tabs-custom -->
-       		</div>
-        	<!-- /.col -->
-      	</div>
-      	<!-- /.row -->
-    </section>
+            <?php
+            $sql = "SELECT
+                	dpp.produk,
+                	dpp.jumlah,
+                	dpp.harga,
+                	p.kode AS kode,
+                	p.nama AS nama,
+                	p.satuan
+                FROM
+                	produk p,
+                	detail_penjualan_produk dpp
+                WHERE
+                	dpp.produk = p.id
+                AND dpp.faktur = '$get_id'";
+            $result = mysqli_query($conn, $sql);
+
+          ?>
+          <!-- Table row -->
+          <div class="row">
+            <div class="col-xs-12 table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Qty</th>
+                  <th>Barang</th>
+                  <th>Harga</th>
+                  <th>Satuan</th>
+                  <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no=1;
+                    $total = 0;
+                    while ($row=mysqli_fetch_assoc($result)) {
+                        $kode = $row['kode'];
+                        $nama = $row['nama'];
+                        $harga = $row['harga'];
+                        $jumlah = $row['jumlah'];
+                        $satuan = $row['satuan'];
+
+                        $total = $total + ($jumlah*$harga);
+                        ?>
+
+                        <tr>
+                          <td><?= $jumlah ?></td>
+                          <td><?= $kode.' - '.$nama ?></td>
+                          <td><?= Rupiah($harga) ?></td>
+                          <td><?= $satuan ?></td>
+                          <td><?= Rupiah($jumlah*$harga) ?></td>
+                        </tr>
+
+                        <?php
+                    }
+                    ?>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-xs-6">
+
+              <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                Terima kasih sudah melakukan pembelian di perusahaan kami.<br /><br /><strong>CV.Mutiara Timur</strong>
+              </p>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-6">
+              <p class="lead">Dibayar <?= Tanggal($tanggal_pembayaran) ?></p>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <!-- <tr>
+                    <th style="width:50%">Subtotal:</th>
+                    <td>$250.30</td>
+                  </tr>
+                  <tr>
+                    <th>Tax (9.3%)</th>
+                    <td>$10.34</td>
+                  </tr>
+                  <tr>
+                    <th>Shipping:</th>
+                    <td>$5.80</td>
+                  </tr> -->
+                  <tr>
+                    <th>Total:</th>
+                    <td>Rp.<?= Rupiah($total) ?></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- this row will not appear when printing -->
+          <!-- <div class="row no-print">
+            <div class="col-xs-12">
+              <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+              <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+              </button>
+              <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                <i class="fa fa-download"></i> Generate PDF
+              </button>
+            </div>
+          </div> -->
+        </section>
+        <?php
+    }else{
+        ?>
+        <section class="content">
+          	<div class="row">
+            	<div class="col-xs-12">
+            		<div class="nav-tabs-custom">
+    		            <ul class="nav nav-tabs pull-right">
+    		              	<li class="active"><a href="" data-toggle="modal" data-target="#modalTambah" class="text-bold"><i class="fa fa-plus text-success"></i> Tambah</a></li>
+    		              	<li class="active"><a href="#tab_2-2" data-toggle="tab">Daftar Pemesanan</a></li>
+    		            </ul>
+    		            <div class="tab-content">
+    		              	<div class="tab-pane active" id="tab_2-2">
+    			            	<table id="example1" class="table table-striped table-bordered dt-responsive nowrap">
+    				                <thead>
+    				                <tr class="bg-success">
+    				                  	<th width="5%">No</th>
+    				                  	<th>Nomor Faktur</th>
+    				                  	<th>Pelanggan</th>
+    				                  	<th>Tanggal Pemesanan</th>
+    				                  	<th>Tanggal Pembayaran</th>
+    				                  	<th class="text-center">Metode Pembayaran</th>
+    				                  	<th class="text-center">Status PO</th>
+    				                  	<th>Dilayani</th>
+    				                  	<th></th>
+    				                </tr>
+    				                </thead>
+    				                <tbody>
+
+    					                <?php
+    					                $sql = "
+    					                SELECT pemesanan_produk.id, pemesanan_produk.nomor_faktur, pemesanan_produk.tanggal_pembayaran, pemesanan_produk.metode_pembayaran, pemesanan_produk.tanggal, pemesanan_produk.status_pembayaran, pelanggan.nama, pelanggan.kode,  DATE_FORMAT(tanggal, '%H:%i:%s') AS jam_pemesanan, DATE_FORMAT(tanggal_pembayaran, '%H:%i:%s') AS jam_pembayaran, pegawai.nip, pegawai.nama_panggilan
+    					                FROM pemesanan_produk
+    					                LEFT JOIN pelanggan ON pemesanan_produk.pelanggan=pelanggan.id
+    					                LEFT JOIN pegawai ON pemesanan_produk.pegawai=pegawai.id
+    					                ORDER BY tanggal DESC";
+    									$result = mysqli_query($conn, $sql);
+
+    									if (mysqli_num_rows($result) > 0) {
+    										$j=0;
+    										$no = 1;
+    									    // keluarkan data dalam variabel row
+    									    while($row = mysqli_fetch_assoc($result)) {
+    									    	$id = $row['id'];
+    									    	$nomor_faktur = $row['nomor_faktur'];
+    									    	$tanggal_pembayaran = $row['tanggal_pembayaran'];
+    									    	$metode_pembayaran = $row['metode_pembayaran'];
+    									    	$status_pembayaran = $row['status_pembayaran'];
+    									    	$tanggal = $row['tanggal'];
+    									    	$nama = $row['nama'];
+    									    	$nama_panggilan = $row['nama_panggilan'];
+    									    	$kode = $row['kode'];
+    									    	$jam_pemesanan = $row['jam_pemesanan'];
+    									    	$jam_pembayaran = $row['jam_pembayaran'];
+    									    	$nip = $row['nip'];
+    									    	$nama_panggilan = $row['nama_panggilan'];
+
+    									    	$sql_status_po = "SELECT id FROM pemesanan_produk WHERE id='$id'";
+    									    	$result_status_po=mysqli_query($conn,$sql_status_po);
+    									    	$jml=mysqli_num_rows($result_status_po);
+    									    	if ($jml==0) {
+    									    		$status_po[$j] = 'belum disetujui';
+    									    	}else{
+    									    		$status_po[$j] = 'sudah disetujui';
+    									    	}
+    									    	?>
+    									        <tr>
+    							                  	<td><?= $no++; ?></td>
+    							                  	<td><?= strtoupper($row['nomor_faktur']) ?></td>
+    							                  	<td><?= strtoupper($row['nama']) ?></td>
+    							                  	<td><?= Tanggal($row['tanggal']).' ('.$jam_pemesanan.')' ?></td>
+    							                  	<td>
+    							                  		<?php
+    							                  		if($row['tanggal_pembayaran']==null){
+    							                  			echo "-";
+    						                  			}else{
+    						                  				echo Tanggal($row['tanggal_pembayaran']);
+    						                  			} ?>
+    						                  		</td>
+    							                  	<td class="text-center"><?= strtoupper($metode_pembayaran) ?></td>
+    							                  	<td class="text-center">
+    							                  		<?php
+    							                  		if ($status_po[$j]=='belum disetujui') {
+    							                  			?><span class="label label-warning">belum disetujui</span><?php
+    							                  		}else{
+    							                  			?><span class="label label-success">sudah disetujui</span><?php
+    							                  		}
+    							                  		?>
+    							                  	</td>
+    							                  	<td><?= strtoupper($row['nip']).' - '.strtoupper($nama_panggilan) ?></td>
+    							                  	<td width="10%" class="text-center">
+    							                  		<!-- <button class="btn btn-sm btn-default" title="Detail PO" data-toggle="modal" data-target="#modalDetailPO" onclick="return detail_pemesanan('<?= $id ?>', '<?= $nomor_faktur ?>', '<?= $tanggal_pembayaran ?>', '<?= $metode_pembayaran ?>', '<?= $tanggal ?>', '<?= $nama ?>', '<?= $kode ?>', '<?= $jam_pemesanan ?>', '<?= $jam_pembayaran ?>', '<?= $status_po[$j] ?>')"><i class="fa fa-file-text-o"></i></button> -->
+                                                        <a class="btn btn-sm btn-default" title="Detail" href="?menu=pemesanan-produk&detail=<?= $id ?>"><i class="fa fa-file-text-o"></i></a>
+    							                  		<!-- <button class="btn btn-sm btn-success" title="Konfirmasi" data-toggle="modal" data-target="#modalKonfirmasi" onclick="return konfirmasi('<?= $id ?>')"><i class="fa fa-check"></i> Terima</button> -->
+    							                  	</td>
+    							                </tr>
+    									        <?php
+    									        $j++;
+    									    }
+    									}
+    					                ?>
+
+    				                </tbody>
+    			              	</table>
+    			            </div>
+    		              	<!-- /.tab-pane -->
+    		            </div>
+    		            <!-- /.tab-content -->
+    		        </div>
+    		        <!-- nav-tabs-custom -->
+           		</div>
+            	<!-- /.col -->
+          	</div>
+          	<!-- /.row -->
+        </section>
+        <?php
+    }
+    ?>
+
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->

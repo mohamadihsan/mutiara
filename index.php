@@ -181,7 +181,7 @@ include_once 'admin/functions/login_supplier.php';
                             				<div class="f1-step-icon"><i class="fa fa-cubes"></i></div>
                             				<p>Sedang diproses</p>
                             			</div>
-                            		    <div class="f1-step <?php if($status=='Sudah dikirim') echo 'active' ?>">
+                            		    <div class="f1-step <?php if($status=='Sudah dikirim' OR $status= 'Sudah diterima') echo 'active' ?>">
                             				<div class="f1-step-icon"><i class="fa fa-truck"></i></div>
                             				<p>Sudah Dikirim</p>
                             			</div>
