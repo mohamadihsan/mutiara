@@ -86,7 +86,8 @@
 
                                             <?php
                                             $i=0;
-                                            $alamat_perusahaan = "UNIKOM Bandung";
+                                            $alamat_perusahaan = "Jl. Raya Cipanas Kecamatan Cipanas Kabupaten Cianjur";
+                                            $alamat_perusahaan_lengkap = "Jl. Raya Cipanas Kp.Belakang RT.03 RW.01 Desa Sindanglaya Kecamatan Cipanas Kabupaten Cianjur";
                                             $susunan = $alamat_perusahaan;
                                             while ($row=mysqli_fetch_assoc($result)) {
                                                 $id = $row['id'];
@@ -158,7 +159,7 @@
                                     // echo "Asal: ".$data->destination_addresses[0];
                                     // echo "<b>AWAL KEBERANGKATAN : </b><br>".$data->origin_addresses[0].'<br /><br />';
                                     echo "<b>ANALISIS DISTRIBUSI TANGGAL: </b><br>".Tanggal($tanggal_analisis).'<br /><br />';
-                                    echo "<b>AWAL KEBERANGKATAN : </b><br>".$alamat_perusahaan.'<br /><br />';
+                                    echo "<b>AWAL KEBERANGKATAN : </b><br>".$alamat_perusahaan_lengkap.'<br /><br />';
                                     echo "<b>SUSUNAN PENGIRIMAN : </b><br>".$susunan.'<br /><br />';
                                 }else{
                                     echo "Data tidak ditemukan";
